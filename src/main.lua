@@ -1,0 +1,46 @@
+
+function __G__TRACKBACK__(msg)
+    print("----------------------------------------")
+    print(debug.traceback(tostring(msg), 2))
+    print("----------------------------------------")
+end
+
+-- 编译参数
+if COCOS2D_DEBUG then
+    DEBUG     = 1
+    DEBUG_LOG = 3
+end
+
+-- 编译参数
+DEBUG     = DEBUG     or 0
+DEBUG_LOG = DEBUG_LOG or 1
+
+-- 项目路径
+PROJ_DOC_PATH = cc.FileUtils:getInstance():getWritablePath() .. string.format("var/")
+
+-- 脚本路径
+package.path = PROJ_DOC_PATH .. "update/src/?.lua"
+                             .. ';src/?.lua'
+     .. ";" .. PROJ_DOC_PATH .. "update/src.ext/?.lua"
+                             .. ';src.ext/?.lua'
+
+-- 资源路径
+cc.FileUtils:getInstance():addSearchPath("zip/")
+cc.FileUtils:getInstance():addSearchPath(PROJ_DOC_PATH .. "update/zip/")
+cc.FileUtils:getInstance():addSearchPath("res.ext/")
+cc.FileUtils:getInstance():addSearchPath(PROJ_DOC_PATH .. "update/res.ext/")
+cc.FileUtils:getInstance():addSearchPath("res/")
+cc.FileUtils:getInstance():addSearchPath(PROJ_DOC_PATH .. "update/res/")
+cc.FileUtils:getInstance():setPopupNotify(false)
+
+-- 命名空间
+PROJNS = "samples"
+PROJID = "SPS-V6"
+
+-- 脚本加载
+cc.LuaLoadChunksFromZIP(cc.FileUtils:getInstance():fullPathForFilename(  "framework.zip" ))
+cc.LuaLoadChunksFromZIP(cc.FileUtils:getInstance():fullPathForFilename( PROJNS .. ".zip" ))
+
+-- 启动函数
+require(PROJNS .. "." .. PROJID)
+

@@ -1,0 +1,19 @@
+# proj.ios
+proj/*.ios/*.xcodeproj/project.xcworkspace/
+proj/*.ios/*.xcodeproj/xcuserdata/
+
+# proj.android
+proj/*.android/**/assets/
+proj/*.android/**/gen/
+proj/*.android/**/obj/
+proj/*.android/**/bin/
+proj/*.android/**/libs/armeabi/gdb.setup
+proj/*.android/**/libs/armeabi/gdbserver
+proj/*.android/**/libs/armeabi/libcocos2dlua.so
+proj/*.android/**/.settings/
+proj/*.android/**/lint.xml
+
+# main
+*.log
+var/
+.udid
