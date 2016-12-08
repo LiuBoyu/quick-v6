@@ -25,5 +25,5 @@ APP_BUILD   = 1
 -- 启动函数
 ----------------------------------------
 
-require("samples.app.Init")
+require(PROJNS .. ".app.Init")
 
