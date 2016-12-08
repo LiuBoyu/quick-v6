@@ -2,14 +2,7 @@
 local res = "framework-debug/scene/010-Samples/"
 
 local Img = {
-    Bg          = res .. "bg.png",
-    Scale9      = res .. "scale9.png",
-    Demo1       = res .. "demo1.png",
-    Demo2       = res .. "demo2.png",
     Card1       = res .. "card1.png",
-    Card2       = res .. "card2.png",
-    Card3       = res .. "card3.png",
-    Card4       = res .. "card4.png",
     Option      = res .. "option.png",
 }
 
@@ -42,7 +35,7 @@ function M:ctor(args)
     self:TEST("精灵(背景)", function()
         clear()
 
-        local a = display.newSprite(Img.Demo1)
+        local a = display.newSprite(Img.Card1)
             :align(display.CENTER, display.cx, display.cy)
             :addTo(self.node)
     end)
@@ -90,7 +83,7 @@ function M:ctor(args)
     self:TEST("按钮(图片)", function()
         clear()
 
-        local a = display.newSprite(Img.Bg)
+        local a = display.newSprite(Img.Card1)
             :align(display.CENTER, display.cx, display.cy)
             :addTo(self.node)
         UI:Button(a)
@@ -118,15 +111,15 @@ function M:ctor(args)
     self:TEST("九宫图", function()
         clear()
 
-        local a = display.newScale9Sprite(Img.Scale9, 0, 0, cc.size(600, 47))
+        local a = display.newScale9Sprite(Img.Card1, 0, 0, cc.size(600, 47))
             :align(display.CENTER, display.cx, display.cy+100)
             :addTo(self.node)
 
-        local b = display.newScale9Sprite(Img.Scale9, 0, 0, cc.size(200, 47))
+        local b = display.newScale9Sprite(Img.Card1, 0, 0, cc.size(200, 47))
             :align(display.CENTER, display.cx, display.cy+50)
             :addTo(self.node)
 
-        local c = display.newScale9Sprite(Img.Scale9, 0, 0, cc.size(200, 100))
+        local c = display.newScale9Sprite(Img.Card1, 0, 0, cc.size(200, 100))
             :align(display.CENTER, display.cx, display.cy-30)
             :addTo(self.node)
     end)
@@ -666,7 +659,7 @@ function M:ctor(args)
     self:TEST("UI调试", function()
         clear()
 
-        local a = display.newSprite(Img.Card2)
+        local a = display.newSprite(Img.Card1)
             :align(display.CENTER, display.cx, display.cy)
             :addTo(self.node)
         UI:DEBUG(a)
