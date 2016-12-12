@@ -418,6 +418,7 @@ function debug.outputENV()
     if COCOS2D_DEBUG    then debug.output("COCOS2D_DEBUG"   , COCOS2D_DEBUG    ) end
     if COCOS2D_DEBUG    then debug.output(                                     ) end
     if CC_USE_CURL      then debug.output("CC_USE_CURL"     , CC_USE_CURL      ) end
+    if CC_USE_SOCKET    then debug.output("CC_USE_SOCKET"   , CC_USE_SOCKET    ) end
     if CC_USE_WEBSOCKET then debug.output("CC_USE_WEBSOCKET", CC_USE_WEBSOCKET ) end
     if CC_USE_SFS2XAPI  then debug.output("CC_USE_SFS2XAPI" , CC_USE_SFS2XAPI  ) end
     if CC_USE_SQLITE    then debug.output("CC_USE_SQLITE"   , CC_USE_SQLITE    ) end
