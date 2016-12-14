@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('SPS-V6.keystore')
+            storePassword 'quickv6'
+            keyAlias 'SPS-V6'
+            keyPassword 'quickv6'
+        }
+    }
+
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "org.cocos2dx.samplesv6"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "0.1"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+task buildLUA(type: Exec) {
+    workingDir '.'
+    executable './build.sh samples QuickV6'
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'assembleRelease') {
+        task.dependsOn 'buildLUA'
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:25.0.1'
+    compile project(':libcocos2dx')
+}
