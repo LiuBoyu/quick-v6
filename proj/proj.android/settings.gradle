@@ -1,0 +1,4 @@
+include ':SPS-V6'
+
+include ':libcocos2dx'
+project(':libcocos2dx').projectDir = new File(settingsDir, 'libs/libcocos2dx')
