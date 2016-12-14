@@ -34,7 +34,8 @@ android {
 
 task buildLUA(type: Exec) {
     workingDir '.'
-    executable './build.sh samples QuickV6'
+    executable './build.sh'
+    args('samples', 'QuickV6')
 }
 
 tasks.whenTaskAdded { task ->

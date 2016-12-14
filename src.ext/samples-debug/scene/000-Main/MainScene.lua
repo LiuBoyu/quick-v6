@@ -8,6 +8,8 @@ function M:ctor(args)
 
     self:MENU("Scene")
 
+    self:TEST("Main",    function() G.Ctx:goto("Main")      end)
+
     self:MENU("Dialog")
 
     self:MENU("UI")

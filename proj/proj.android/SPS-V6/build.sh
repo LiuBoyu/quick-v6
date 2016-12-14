@@ -8,7 +8,9 @@ echo "==================================="
 echo "========[Build Lua Release]========"
 echo "==================================="
 
-COMP="../../../../quick-v3/quick/bin/compile_scripts.sh"
+export QUICK_V3_ROOT="../../../../quick-v3"
+
+COMP="$QUICK_V3_ROOT/quick/bin/compile_scripts.sh"
 OPTS="-e xxtea_zip -ek $2 -es XT"
 
 $COMP $OPTS -jit -r -i ../../../src/framework  -p framework  -o src/release/assets/zip/framework.zip
