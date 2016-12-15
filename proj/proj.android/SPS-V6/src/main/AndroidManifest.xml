@@ -23,7 +23,7 @@
         <!-- **************** MainActivity **************** -->
         <meta-data android:name="android.app.lib_name"
             android:value="cocos2dlua" />
-        <activity android:name=".MainActivity"
+        <activity android:name="org.cocos2dx.quickv6.MainActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:screenOrientation="landscape"

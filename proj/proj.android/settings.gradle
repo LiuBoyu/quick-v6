@@ -1,4 +1,4 @@
 include ':SPS-V6'
 
 include ':libcocos2dx'
-project(':libcocos2dx').projectDir = new File(settingsDir, 'libs/libcocos2dx')
+project(':libcocos2dx').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libcocos2dx')
