@@ -97,12 +97,8 @@ G.CtxOnGotoByUIScene = function()
                         end
                     end
 
-                    if sceneName ~= "Room" then
-                        G.Ctx:showDialog("QuitGameDialog")
-                    else
-                        if sceneObject.onBack then
-                            sceneObject:onBack()
-                        end
+                    if sceneObject.onBack then
+                        sceneObject:onBack()
                     end
                 end
             end)

@@ -42,12 +42,12 @@ G.Config.App     = { Id      = APP_ID,
 G.Config.Sqlite  = { FilePath = PROJ_DOC_PATH,
                      FileName = PROJNS .. ".db" }
 
-G.Config.Http    = { Update = { BaseUrl = "http://s3.amazonaws.com/coconut/teenpattiv2/update/",
+G.Config.Http    = { Update = { BaseUrl = "http://s3.amazonaws.com/cocos2dx/samplesv6/update/",
                               },
-                        API = { BaseUrl = "http://teenpattiv2.coconut.com:8088/",
+                        API = { BaseUrl = "http://samplesv6.cocos2dx.org:8080/",
                               }}
 
-G.Config.SFS     = { Host = "54.254.226.65", Port = 6933, Zone = "millionairetp" }
+G.Config.SFS     = { Host = "12.34.56.78", Port = 6933, Zone = "samplesv6" }
 
 G.Config.Url     = {}
 

@@ -11,7 +11,7 @@ export PROJPK=$6
 
 function create()
 {
-    echo "create project $PROJCD $PROJNS $PROJPR-$PROJCH"
+    echo "create project $PROJCD $PROJNS $PROJPR-$PROJCH $PROJPK"
 
     cd    ..
     mkdir $PROJCD
@@ -40,21 +40,21 @@ function create()
 
     mv src/$PROJNS/SPS-V6.lua src/$PROJNS/$PROJPR-$PROJCH.lua
 
-    sed -i '' 's/PROJNS =.*/PROJNS = "'"$PROJNS"'"/g'                       src/main.lua
-    sed -i '' 's/PROJID =.*/PROJID = "'"$PROJPR"'-'"$PROJCH"'"/g'           src/main.lua
+    sed -i "" "s/PROJNS =.*/PROJNS = '$PROJNS'/g"                       src/main.lua
+    sed -i "" "s/PROJID =.*/PROJID = '$PROJID'/g"                       src/main.lua
 
-    sed -i '' 's/APP_ID      =.*/APP_ID      = "'"$PROJCD"'"/g'             src/$PROJNS/$PROJPR-$PROJCH.lua
-    sed -i '' 's/APP_NAME    =.*/APP_NAME    = "'"$PROJCD"'"/g'             src/$PROJNS/$PROJPR-$PROJCH.lua
-    sed -i '' 's/APP_CODE    =.*/APP_CODE    = "'"$PROJPR"'-'"$PROJCH"'"/g' src/$PROJNS/$PROJPR-$PROJCH.lua
-    sed -i '' 's/APP_PRODUCT =.*/APP_PRODUCT = "'"$PROJPR"'"/g'             src/$PROJNS/$PROJPR-$PROJCH.lua
-    sed -i '' 's/APP_CHANNEL =.*/APP_CHANNEL = "'"$PROJCH"'"/g'             src/$PROJNS/$PROJPR-$PROJCH.lua
+    sed -i "" "s/APP_ID      =.*/APP_ID      = '$PROJPK'/g"             src/$PROJNS/$PROJID.lua
+    sed -i "" "s/APP_NAME    =.*/APP_NAME    = '$PROJID'/g"             src/$PROJNS/$PROJID.lua
+    sed -i "" "s/APP_CODE    =.*/APP_CODE    = '$PROJID'/g"             src/$PROJNS/$PROJID.lua
+    sed -i "" "s/APP_PRODUCT =.*/APP_PRODUCT = '$PROJPR'/g"             src/$PROJNS/$PROJID.lua
+    sed -i "" "s/APP_CHANNEL =.*/APP_CHANNEL = '$PROJCH'/g"             src/$PROJNS/$PROJID.lua
 
     cd $QUICK
 }
 
 function android()
 {
-    echo "create android $PROJCD $PROJNS $PROJPR-$PROJCH"
+    echo "create android $PROJCD $PROJNS $PROJPR-$PROJCH $PROJPK"
 
     cd ../$PROJCD/proj
 
@@ -125,8 +125,8 @@ function status()
 {
     echo -e "[ \033[32mQUICKV6\033[0m ]"
     echo
-    echo -e "./quick.sh create pathname namespace product channel"
-    echo -e "./quick.sh create battle-of-balls bob BOB CG"
+    echo -e "./quick.sh create pathname namespace product channel package"
+    echo -e "./quick.sh create battle-of-balls bob BOB CG org.cocos2dx.battleofballs"
     echo
     echo -e "./quick.sh android pathname namespace product channel package"
     echo -e "./quick.sh android battle-of-balls bob BOB CG org.cocos2dx.battleofballs"
