@@ -58,14 +58,22 @@ function android()
 
     cd ../$PROJCD/proj
 
-    mkdir proj.android
+    if [ ! -d proj.android    ]; then
+        mkdir proj.android
+    fi
+
     cd    proj.android
 
-    cp ../../../quick-v6/proj/proj.android/.gitignore      .
-    cp ../../../quick-v6/proj/proj.android/build.gradle    .
-    cp ../../../quick-v6/proj/proj.android/settings.gradle .
-
-    sed -i "" "s/SPS-V6/$PROJID/g" settings.gradle
+    if [ ! -a .gitignore      ]; then
+        cp ../../../quick-v6/proj/proj.android/.gitignore      .
+    fi
+    if [ ! -a build.gradle    ]; then
+        cp ../../../quick-v6/proj/proj.android/build.gradle    .
+    fi
+    if [ ! -a settings.gradle ]; then
+        cp ../../../quick-v6/proj/proj.android/settings.gradle .
+        sed -i "" "s/SPS-V6/$PROJID/g" settings.gradle
+    fi
 
     mkdir $PROJID
 
