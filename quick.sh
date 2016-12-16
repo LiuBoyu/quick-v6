@@ -107,7 +107,7 @@ function android()
     sed -i "" "s/SPS-V6/$PROJID/g"                 $PROJID/src/release/assets/src/main.lua
 
     cd $PROJID
-    keytool -genkey -keyalg RSA -keysize 1024 -validity 36500 -keystore S2A-CG.keystore -storepass quickv6 -alias S2A-CG -keypass quickv6 < S2A-CG.txt
+    keytool -genkey -keyalg RSA -keysize 1024 -validity 36500 -keystore $PROJID.keystore -storepass quickv6 -alias $PROJID -keypass quickv6 < $PROJID.txt
     cd ..
 
     cd $QUICK
