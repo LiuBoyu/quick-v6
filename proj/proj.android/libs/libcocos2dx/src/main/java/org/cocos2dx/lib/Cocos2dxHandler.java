@@ -84,8 +84,6 @@ public class Cocos2dxHandler extends Handler {
                     
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        
                     }
                 }).create().show();
     }
