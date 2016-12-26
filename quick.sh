@@ -64,14 +64,17 @@ function android()
 
     cd    proj.android
 
-    if [ ! -a .gitignore      ]; then
-        cp ../../../quick-v6/proj/proj.android/.gitignore      .
+    if [ ! -a .gitignore        ]; then
+        cp ../../../quick-v6/proj/proj.android/.gitignore        .
     fi
-    if [ ! -a build.gradle    ]; then
-        cp ../../../quick-v6/proj/proj.android/build.gradle    .
+    if [ ! -a gradle.properties ]; then
+        cp ../../../quick-v6/proj/proj.android/gradle.properties .
     fi
-    if [ ! -a settings.gradle ]; then
-        cp ../../../quick-v6/proj/proj.android/settings.gradle .
+    if [ ! -a build.gradle      ]; then
+        cp ../../../quick-v6/proj/proj.android/build.gradle      .
+    fi
+    if [ ! -a settings.gradle   ]; then
+        cp ../../../quick-v6/proj/proj.android/settings.gradle   .
         sed -i "" "s/SPS-V6/$PROJID/g" settings.gradle
     fi
 
@@ -125,8 +128,8 @@ function status()
 {
     echo -e "[ \033[32mQUICKV6\033[0m ]"
     echo
-    echo -e "./quick.sh create pathname namespace product channel package"
-    echo -e "./quick.sh create battle-of-balls bob BOB CG org.cocos2dx.battleofballs"
+    echo -e "./quick.sh  create pathname namespace product channel package"
+    echo -e "./quick.sh  create battle-of-balls bob BOB CG org.cocos2dx.battleofballs"
     echo
     echo -e "./quick.sh android pathname namespace product channel package"
     echo -e "./quick.sh android battle-of-balls bob BOB CG org.cocos2dx.battleofballs"
