@@ -34,7 +34,6 @@ return function(object, args)
     local enabled = true
 
     local status = "ready"
-    local ts0
 
     local tap     = { status = "ready" }
     local taphold = { status = "ready" }
@@ -43,20 +42,15 @@ return function(object, args)
 
     if mode == "slow" then
 
-        checkTs = function()
+        checkTs = function(args, delay)
+            local ts0 = args.ts or 0
             local ts1 = gettime()
 
-            if not ts0 then
-                ts0 = ts1 - 60
+            if ts1 - ts0 > delay then
+                return true
             end
 
-            if (ts1 - ts0) > 1.0 then
-                ts0 = ts1
-                return true
-            else
-                ts0 = ts1
-                return false
-            end
+            return false
         end
 
     end
@@ -112,7 +106,7 @@ return function(object, args)
 
             tap.status = "done"
 
-            if (checkOnTap and not checkOnTap()) or (checkTs and not checkTs()) then
+            if (checkOnTap and not checkOnTap()) or (checkTs and not checkTs(tap, 1.0)) then
 
                 if DEBUG_LOG_UIBUTTON then
                     object:logDEBUG("点击(false)")
@@ -124,13 +118,15 @@ return function(object, args)
                     object:logDEBUG("点击")
                 end
 
+                tap.ts = gettime()
+
                 onTap()
             end
 
         else
 
-            if math.abs(e.x - tap.x) > (display.width  * 2 / 100)
-            or math.abs(e.y - tap.y) > (display.height * 2 / 100) then
+            if math.abs(e.x - tap.x) > (display.width  / 100)
+            or math.abs(e.y - tap.y) > (display.height / 100) then
                 tap.status = "ignored"
             end
 
