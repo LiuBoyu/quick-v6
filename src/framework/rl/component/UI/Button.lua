@@ -29,6 +29,8 @@ return function(object, args)
     local checkOnTap     = args.checkOnTap
     local checkOnTapHold = args.checkOnTapHold
 
+    local onTapDrag
+
     local mode = args.mode or "slow"
 
     local enabled = true
@@ -193,6 +195,10 @@ return function(object, args)
             checkNodeOnTapHold(e, contained)
         end
 
+        if onTapDrag then
+            onTapDrag(e, contained)
+        end
+
         if e.name == "began" then
             return true
         end
@@ -248,6 +254,14 @@ return function(object, args)
 
     function object:setCheckOnTapHold(callback)
         checkOnTapHold = callback
+    end
+
+----------------------------------------
+-- 对象方法·按钮
+----------------------------------------
+
+    function object:setOnTapDrag(callback)
+        onTapDrag = callback
     end
 
 ----------------------------------------

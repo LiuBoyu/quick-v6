@@ -14,6 +14,10 @@ function UI:Button(object, args)
     return UI:Component(object, args):addComponent("UI.Button", args)
 end
 
+function UI:DragDrop(object, args)
+    return UI:Component(object, args):addComponent("UI.DragDrop", args)
+end
+
 function UI:Dialog(object, args)
     return UI:Component(object, args):addComponent("UI.Dialog", args)
 end

@@ -106,6 +106,22 @@ function M:ctor(args)
         end)
     end)
 
+    self:TEST("拖拽(图片)", function()
+        clear()
+
+        local a = display.newSprite(Img.Card1)
+            :align(display.CENTER, display.cx, display.cy)
+            :addTo(self.node)
+        UI:DragDrop(a)
+
+        -- a:setOnDrag(function(e)
+        --     print("拖拽")
+        -- end)
+        a:setOnDrop(function(e)
+            print("落下")
+        end)
+    end)
+
     -- 九宫图
 
     self:TEST("九宫图", function()

@@ -116,6 +116,7 @@ rl.component.SqliteModel     = require("framework.rl.component.SqliteModel")
 rl.component.UI = {}
 
 rl.component.UI.Button       = require("framework.rl.component.UI.Button")
+rl.component.UI.DragDrop     = require("framework.rl.component.UI.DragDrop")
 rl.component.UI.Dialog       = require("framework.rl.component.UI.Dialog")
 rl.component.UI.UrlPic       = require("framework.rl.component.UI.UrlPic")
 rl.component.UI.I18N         = require("framework.rl.component.UI.I18N")
@@ -190,6 +191,7 @@ rl.COMPONENT( "SqliteModel",     rl.component.SqliteModel )        -- 数据模�
 -- rl.COMPONENT( "BehaviorTree",    rl.component.BehaviorTree )       -- 行为树
 
 rl.COMPONENT( "UI.Button",       rl.component.UI.Button )          -- 触控按钮
+rl.COMPONENT( "UI.DragDrop",     rl.component.UI.DragDrop )        -- 拖拽按钮
 rl.COMPONENT( "UI.Dialog",       rl.component.UI.Dialog )          -- 对话窗体
 rl.COMPONENT( "UI.UrlPic",       rl.component.UI.UrlPic )          -- 异步图片
 rl.COMPONENT( "UI.I18N",         rl.component.UI.I18N )            -- 国际化
