@@ -2,9 +2,9 @@ package org.cocos2dx.sdk;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
 import com.umeng.analytics.MobclickAgent.UMAnalyticsConfig;
+import com.umeng.analytics.game.UMGameAgent;
 
 import java.util.HashMap;
 
@@ -16,33 +16,34 @@ public class UmengSDK {
     public static void start() {
         if (SDKUtils.isDebug()) {
             SDKConfig.set("UmengChannel", "DEBUG");
-            MobclickAgent.setDebugMode(true);
+            UMGameAgent.setDebugMode(true);
         }
         UMAnalyticsConfig config = new UMAnalyticsConfig(SDKUtils.getContext(), SDKConfig.get("UmengAppKey"), SDKConfig.get("UmengChannel"), EScenarioType.E_UM_GAME);
-        MobclickAgent.startWithConfigure(config);
+        UMGameAgent.startWithConfigure(config);
+        UMGameAgent.init(SDKUtils.getContext());
     }
 
     public static void onResume() {
-        MobclickAgent.onResume(SDKUtils.getContext());
+        UMGameAgent.onResume(SDKUtils.getContext());
     }
 
     public static void onPause() {
-        MobclickAgent.onPause(SDKUtils.getContext());
+        UMGameAgent.onPause(SDKUtils.getContext());
     }
 
     public static void onDestroy() {
-        MobclickAgent.onKillProcess(SDKUtils.getContext());
+        UMGameAgent.onKillProcess(SDKUtils.getContext());
     }
-    //
 
+    //
     // 统计
     //
     public static void onProfileSignIn(String accountId) {
-        MobclickAgent.onProfileSignIn(accountId);
+        UMGameAgent.onProfileSignIn(accountId);
     }
 
     public static void onProfileSignOff() {
-        MobclickAgent.onProfileSignOff();
+        UMGameAgent.onProfileSignOff();
     }
 
     public static void onEvent(String json) {
@@ -61,12 +62,12 @@ public class UmengSDK {
         String id = args.getString("id");
 
         if (args.containsKey("du")) {
-            MobclickAgent.onEventValue(SDKUtils.getContext(), id, kv, args.getInteger("du"));
+            UMGameAgent.onEventValue(SDKUtils.getContext(), id, kv, args.getInteger("du"));
         } else {
             if (kv.size() > 0) {
-                MobclickAgent.onEvent(SDKUtils.getContext(), id, kv);
+                UMGameAgent.onEvent(SDKUtils.getContext(), id, kv);
             } else {
-                MobclickAgent.onEvent(SDKUtils.getContext(), id);
+                UMGameAgent.onEvent(SDKUtils.getContext(), id);
             }
         }
     }
