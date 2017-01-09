@@ -4,10 +4,10 @@ include ':libcocos2dx'
 project(':libcocos2dx').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libcocos2dx')
 
 include ':libiap'
-project(':libiap').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/IAPSDK')
+project(':libiap').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libiap')
 
 include ':libumeng'
-project(':libumeng').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/UmengSDK')
+project(':libumeng').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libumeng')
 
 include ':libvungle'
 project(':libvungle').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libvungle')
