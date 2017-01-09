@@ -10,8 +10,6 @@ import com.android.vending.util.Inventory;
 import com.android.vending.util.Purchase;
 import com.android.vending.util.SkuDetails;
 
-import org.cocos2dx.libiap.BuildConfig;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +65,7 @@ public class IAPSDK {
             public void run() {
                 s_iab = new IabHelper(SDKUtils.getContext(), SDKConfig.get("GooglePlayPublicKey"));
 
-                if (BuildConfig.DEBUG) {
+                if (SDKUtils.isDebug()) {
                     s_iab.enableDebugLogging(true);
                 }
 
