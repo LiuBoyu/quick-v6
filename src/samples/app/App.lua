@@ -14,6 +14,7 @@ function App:ctor()
         :addComponent("EventDispatcher")
         :addComponent("EventProxy")
         :addComponent("SDK.App")
+        :addComponent("SDK.Vungle")
 
     -- 转发事件(Cocos)
     local customListenerFg = cc.EventListenerCustom:create("APP_ENTER_FOREGROUND_EVENT", function()

@@ -14,7 +14,7 @@ return function(object, args)
 ----------------------------------------
 
     local args = args or {}
-    local VungleSDK = "com/havefunstudios/sdk/VungleSDK"
+    local VungleSDK = "org/cocos2dx/sdk/VungleSDK"
 
 ----------------------------------------
 -- 对象方法
@@ -22,6 +22,12 @@ return function(object, args)
 
     function object:playAdByVungleSDK(callback)
         log.debug("playAd")
+
+        local callback = function(args) args = json.decode(args)
+            if callback then
+                return callback(args)
+            end
+        end
 
         local ok, ret = luaj.callStaticMethod(VungleSDK, "playAd", {
                             callback,
@@ -39,6 +45,12 @@ return function(object, args)
 
     function object:setOnAdPlayableChangedByVungleSDK(callback)
         log.debug("setOnAdPlayableChanged")
+
+        local callback = function(args) args = (args == "TRUE") and true or false
+            if callback then
+                return callback(args)
+            end
+        end
 
         local ok, ret = luaj.callStaticMethod(VungleSDK, "setOnAdPlayableChanged", {
                             callback,

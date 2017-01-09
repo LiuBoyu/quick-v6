@@ -130,6 +130,24 @@ function M:ctor(args)
         })
     end)
 
+    self:MENU("VungleSDK")
+
+    self:TEST("playAd", function()
+        G.App:playAdByVungleSDK(function(ret)
+            print("playAd:", tostring(ret))
+        end)
+    end)
+
+    self:TEST("isAdPlayable", function()
+        print("isAdPlayable: ", G.App:isAdPlayableByVungleSDK())
+    end)
+
+    self:TEST("setOnAdPlayableChanged", function()
+        G.App:setOnAdPlayableChangedByVungleSDK(function(isOK)
+            print("onAdPlayableChanged:", isOK)
+        end)
+    end)
+
 end
 
 return M

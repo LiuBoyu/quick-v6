@@ -21,10 +21,10 @@ public class MainActivity extends Cocos2dxActivity {
         SDKUtils.setContext(this);
 
         // Config
-        // TODO
+        SDKConfig.set("VungleAppId", "Test_Android");
 
         // SDK
-        // TODO
+        startSDK("org.cocos2dx.sdk.VungleSDK");
     }
 
     @Override
