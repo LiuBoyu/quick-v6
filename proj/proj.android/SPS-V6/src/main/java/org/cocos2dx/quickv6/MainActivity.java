@@ -21,9 +21,14 @@ public class MainActivity extends Cocos2dxActivity {
         SDKUtils.setContext(this);
 
         // Config
+        SDKConfig.set("GooglePlayPublicKey", "?");
+        SDKConfig.set("UmengAppKey", "?");
+        SDKConfig.set("UmengChannel", "GP");
         SDKConfig.set("VungleAppId", "Test_Android");
 
         // SDK
+        startSDK("org.cocos2dx.sdk.IAPSDK");
+        startSDK("org.cocos2dx.sdk.UmengSDK");
         startSDK("org.cocos2dx.sdk.VungleSDK");
     }
 

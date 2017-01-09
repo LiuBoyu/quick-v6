@@ -589,6 +589,13 @@ function M:ctor(args)
         output(1234567890)
     end)
 
+    self:TEST("数字格式化", function()
+        clear()
+
+        print( string.format("%02d:%02d", 1, 13) )
+
+    end)
+
     ----------------
     -- Debug
     ----------------
