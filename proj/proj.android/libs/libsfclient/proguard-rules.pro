@@ -1,0 +1,1 @@
+-keep class org.cocos2dx.sdk.** {*;}
