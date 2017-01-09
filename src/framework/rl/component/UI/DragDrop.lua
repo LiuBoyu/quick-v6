@@ -11,7 +11,7 @@ return function(object, args)
 -- 组件依赖
 ----------------------------------------
 
-    if not object:isComponent("UI.Button") then object:addComponent("UI.Button") end
+    if not object:isComponent("UI.Button") then object:addComponent("UI.Button", args) end
 
 ----------------------------------------
 -- 组件参数
