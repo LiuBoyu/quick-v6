@@ -6,8 +6,17 @@ project(':libcocos2dx').projectDir = new File(settingsDir, '../../../quick-v6/pr
 include ':libiap'
 project(':libiap').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libiap')
 
+include ':libfacebook'
+project(':libfacebook').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libfacebook')
+
 include ':libumeng'
 project(':libumeng').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libumeng')
 
 include ':libvungle'
 project(':libvungle').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libvungle')
+
+include ':libsfclient'
+project(':libsfclient').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libsfclient')
+
+include ':libtalkingdata'
+project(':libtalkingdata').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libtalkingdata')
