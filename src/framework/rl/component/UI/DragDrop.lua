@@ -56,8 +56,8 @@ return function(object, args)
 
             if drag.status == "ready" then
 
-                if math.abs(e.x - drag.x) > (display.width  / 100)
-                or math.abs(e.y - drag.y) > (display.height / 100) then
+                if math.abs(e.x - drag.x) > (display.width  * 2/100)
+                or math.abs(e.y - drag.y) > (display.height * 2/100) then
 
                     if DEBUG_LOG_UIBUTTON then
                         object:logDEBUG("拖拽")

@@ -127,8 +127,8 @@ return function(object, args)
 
         else
 
-            if math.abs(e.x - tap.x) > (display.width  / 100)
-            or math.abs(e.y - tap.y) > (display.height / 100) then
+            if math.abs(e.x - tap.x) > (display.width  * 2/100)
+            or math.abs(e.y - tap.y) > (display.height * 2/100) then
                 tap.status = "ignored"
             end
 
