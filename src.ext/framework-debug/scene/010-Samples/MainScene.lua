@@ -222,6 +222,68 @@ function M:ctor(args)
         })
     end)
 
+    self:TEST("动作(果冻1)", function()
+        clear()
+
+        local b = display.newNode()
+            :align(display.CENTER, display.cx, display.cy)
+            :addTo(self.node)
+
+        local a = display.newSprite(Img.Card1)
+            :align(display.CENTER, 0, 0)
+            :addTo(b)
+
+        b:playAction(cc.Spawn:create({
+            cc.TargetedAction:create(a, cc.EaseBounceOut:create(
+                cc.Sequence:create({
+                    cc.ScaleTo:create(0.1, 0.8, 1.0),
+                    cc.ScaleTo:create(0.2, 1.0, 1.0),
+                })
+            )),
+            cc.TargetedAction:create(b, cc.EaseBounceOut:create(
+                cc.Sequence:create({
+                    cc.ScaleTo:create(0.1, 1.0, 1.2),
+                    cc.ScaleTo:create(0.2, 1.0, 1.0),
+                })
+            )),
+        }), {
+            onComplete = function()
+                print("done!!!")
+            end,
+        })
+    end)
+
+    self:TEST("动作(果冻2)", function()
+        clear()
+
+        local b = display.newNode()
+            :align(display.CENTER, display.cx, display.cy)
+            :addTo(self.node)
+
+        local a = display.newSprite(Img.Card1)
+            :align(display.CENTER, 0, 0)
+            :addTo(b)
+
+        b:playAction(cc.Spawn:create({
+            cc.TargetedAction:create(a, cc.EaseElasticOut:create(
+                cc.Sequence:create({
+                    cc.ScaleTo:create(0.1, 0.6, 1.0),
+                    cc.ScaleTo:create(0.2, 1.0, 1.0),
+                })
+            )),
+            cc.TargetedAction:create(b, cc.EaseElasticOut:create(
+                cc.Sequence:create({
+                    cc.ScaleTo:create(0.1, 1.0, 1.4),
+                    cc.ScaleTo:create(0.2, 1.0, 1.0),
+                })
+            )),
+        }), {
+            onComplete = function()
+                print("done!!!")
+            end,
+        })
+    end)
+
     ----------------
     -- UI
     ----------------
