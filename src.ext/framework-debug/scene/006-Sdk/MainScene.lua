@@ -37,9 +37,7 @@ function M:ctor(args)
     end)
 
     self:TEST("init", function()
-        rl.G.IapConsumableProductIds = {
-            "tp2_chips_1",
-        }
+        rl.G.IapConsumableProductIds = G.Product:getAllIAPs()
         G.App:initByIAPSDK(function(isOK, info)
             print(tostring(isOK))
             print(tostring(info))
@@ -47,7 +45,7 @@ function M:ctor(args)
     end)
 
     self:TEST("purchase", function()
-        G.App:purchaseByIAPSDK("tp2_chips_1")
+        G.App:purchaseByIAPSDK( G.Product:getAllIAPs()[1] )
     end)
 
     self:MENU("FacebookSDK")
