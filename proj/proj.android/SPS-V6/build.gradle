@@ -30,6 +30,23 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            if (variant.buildType.name.equals('release')) {
+                def flavor = ""
+
+                if (variant.productFlavors[0] != null) {
+                    flavor = ".${variant.productFlavors[0].name}"
+                }
+
+                def ts = new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+
+                def filename = "${project.name}.v${defaultConfig.versionName}.${defaultConfig.versionCode}.${ts}${flavor}.apk"
+                output.outputFile = new File(output.outputFile.parent, filename)
+            }
+        }
+    }
 }
 
 task buildLUA(type: Exec) {
