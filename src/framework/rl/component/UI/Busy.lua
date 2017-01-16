@@ -108,7 +108,7 @@ return function(object, args)
         end)
     end
 
-    function object:showBusyUI()
+    function object:showBusy()
 
         if ct == 0 then
 
@@ -124,23 +124,29 @@ return function(object, args)
 
                 if s0 > 1 then s0 = 1 end
 
-                local ok, ret = pcall(function()
-                    return rl.G.Ctx:createUI("BusyUI")
-                end)
+                local BusyUI = rl.G.Ctx:require("BusyUI")
 
-                if ok then
-                    wait = ret
+                if BusyUI then
+                    wait = BusyUI.new(args)
                 else
-                    wait = display.newText({ text = "[ ]", size = 32 })
-                    wait:schedule(function()
-                        wait.ts = (wait.ts or 0) + 1
-                        wait:setText("[ " .. string.rep(".", wait.ts) .. " ]")
-                    end, 0.5)
+                    wait = display.newNode()
                 end
 
                 wait:addTo(object, 9999)
                 wait:align(display.CENTER, p0.x, p0.y)
                 wait:scale(s0)
+
+                if DEBUG_LOG_UIBUSY then
+                    local tsUI = display.newText({ text = "[ 0 ]", size = 24, font = Font.Bold })
+                        :align(display.CENTER, 0, 0)
+                        :addTo(wait, 9999)
+
+                    local ts = gettime()
+
+                    tsUI:schedule(function()
+                        tsUI:setText(string.format("[ %.1f ]", gettime() - ts))
+                    end, 0.1)
+                end
             end
 
             if onBusy then
@@ -151,9 +157,8 @@ return function(object, args)
 
         ct = ct + 1
     end
-    object.showBusy = object.showBusyUI
 
-    function object:hideBusyUI()
+    function object:hideBusy()
         ct = ct - 1
 
         if ct == 0 then
@@ -174,7 +179,6 @@ return function(object, args)
         end
 
     end
-    object.hideBusy = object.hideBusyUI
 
     return component
 end

@@ -355,25 +355,26 @@ function M:ctor(args)
 
     self:MENU("UI", { newline = false })
 
-    self:TEST("Busy(Default)", function()
+    self:TEST("Busy(UI)", function()
         clear()
 
-        G.Ctx:createUI("BusyUI")
+        local a = display.newSprite(Img.Card1)
             :align(display.CENTER, display.cx, display.cy)
             :addTo(self.node)
-    end)
 
-    self:TEST("Busy(Big)", function()
-        clear()
+        UI:Button(a)
+            :addComponent("UI.Busy")
 
-        G.Ctx:createUI("BusyUI", { name = "Big" })
-            :align(display.CENTER, display.cx, display.cy)
-            :addTo(self.node)
+        a:performWithBusy(function(done)
+            self:performWithDelay(function()
+                done()
+            end, 3.0)
+        end)
     end)
 
     self:TEST("Busy(Dialog)", function()
 
-        G.Ctx:performWithBusyDialog(function(done)
+        G.Ctx:performWithBusy(function(done)
             self:performWithDelay(function()
                 done()
             end, 3.0)

@@ -27,9 +27,9 @@ return function(object, args)
 -- 组件参数
 ----------------------------------------
 
-    local isShowBusyUI = args.showBusyUI or false
+    local showBusy = args.showBusy or false
 
-    if isShowBusyUI then
+    if showBusy then
         if not object:isComponent("UI.Busy") then object:addComponent("UI.Busy") end
     end
 
@@ -51,8 +51,8 @@ return function(object, args)
 
     function object:setPollOnBusy(callback)
         onBusy = function()
-            if isShowBusyUI then
-                object:showBusyUI()
+            if showBusy then
+                object:showBusy()
             end
             if callback then
                 return callback()
@@ -62,8 +62,8 @@ return function(object, args)
 
     function object:setPollOnIdle(callback)
         onIdle = function()
-            if isShowBusyUI then
-                object:hideBusyUI()
+            if showBusy then
+                object:hideBusy()
             end
             if callback then
                 return callback()

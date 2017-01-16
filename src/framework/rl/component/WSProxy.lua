@@ -39,7 +39,7 @@ return function(object, args)
     function object:setWSOnBusy(callback)
         onBusy = function()
             if object:isComponent("UI.Busy") then
-                object:showBusyUI()
+                object:showBusy()
             end
             if callback then
                 return callback()
@@ -50,7 +50,7 @@ return function(object, args)
     function object:setWSOnIdle(callback)
         onIdle = function()
             if object:isComponent("UI.Busy") then
-                object:hideBusyUI()
+                object:hideBusy()
             end
             if callback then
                 return callback()
