@@ -119,7 +119,9 @@ function ObjectFactory:internalRequireBySearchPaths(name)
             return cls
         end
     end
-    log.error("执行脚本: ... [%s] 没有找到: %s", name, self.__searchPaths)
+    if DEBUG_LOG_OBJECTFACTORY then
+        log.debug("执行脚本: ... [%s] 没有找到: %s", name, self.__searchPaths)
+    end
 end
 
 function ObjectFactory:internalRequire(fullname)

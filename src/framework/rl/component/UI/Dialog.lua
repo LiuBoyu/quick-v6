@@ -15,7 +15,7 @@ return function(object, args)
 
     local mode = args.mode or 1
 
-    local effect = args.effect or "Center"  -- Center Left Right Up Down None
+    local effect = args.effect or "Center"  -- Center Left Right Up Down FadeIn FadeOut FadeInOut None
     local align  = args.align  or display.CENTER
 
     local width  = args.width  or 0
@@ -194,6 +194,15 @@ return function(object, args)
             callback(); return
         elseif effect == "Down"   then
             callback(); return
+        elseif effect == "FadeIn" or effect == "FadeInOut" then
+            obj:setCascadeOpacityEnabled(true)
+            obj:opacity(0)
+            return transition.fadeIn(obj, {
+                time       = 0.6,
+                onComplete = function()
+                    return callback()
+                end,
+            })
         else
             callback(); return
         end
@@ -227,6 +236,14 @@ return function(object, args)
             callback(); return
         elseif effect == "Down"   then
             callback(); return
+        elseif effect == "FadeOut" or effect == "FadeInOut" then
+            obj:setCascadeOpacityEnabled(true)
+            return transition.fadeOut(obj, {
+                time       = 0.2,
+                onComplete = function()
+                    return callback()
+                end,
+            })
         else
             callback(); return
         end

@@ -18,15 +18,15 @@ return function(object, args)
 ----------------------------------------
 
     local dialog = display.newNode():addTo(object, 6000)
-    local sysmsg = display.newNode():addTo(object, 8000)
+    local alerts = display.newNode():addTo(object, 8000)
     local editor = display.newNode():addTo(object, 9000)
 
     function component:getDialog()
         return dialog
     end
 
-    function component:getSysMsg()
-        return sysmsg
+    function component:getAlerts()
+        return alerts
     end
 
     function component:getEditor()

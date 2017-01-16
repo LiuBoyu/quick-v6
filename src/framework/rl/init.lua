@@ -236,3 +236,11 @@ collectgarbage("setstepmul", 5000)
 
 require("framework.init")
 require("framework.rl.cocos.init")
+
+-- ui
+
+rl.ui = {}
+
+rl.ui.AlertDialog = require("framework.rl.ui.AlertDialog")
+rl.ui.BusyDialog  = require("framework.rl.ui.BusyDialog")
+
