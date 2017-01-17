@@ -21,14 +21,20 @@ return function(object, args)
 -- 对象方法·事件统计
 ----------------------------------------
 
-    local onEvent = function(e)
-        if args.umeng then
-            object:onEventByUmengSDK(e)
-        end
-    end
+    function object:track(name, callback)
+        self:listenEvent(self, name, function(e)
+            local k, v = callback(e)
 
-    function object:track(name)
-        self:listenEvent(self, name, onEvent)
+            if v then
+
+                if k == "event" then
+                    if args.umeng then
+                        object:onEventByUmengSDK(v)
+                    end
+                end
+
+            end
+        end)
     end
 
     return component
