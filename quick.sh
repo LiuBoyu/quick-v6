@@ -14,7 +14,9 @@ function create()
     echo "create project $PROJCD $PROJNS $PROJPR-$PROJCH $PROJPK"
 
     cd    ..
-    mkdir $PROJCD
+    if [ ! -d $PROJCD ]; then
+        mkdir $PROJCD
+    fi
     cd    $PROJCD
 
     mkdir res
@@ -27,7 +29,6 @@ function create()
     mkdir src.ext
 
     mkdir proj
-    mkdir bin
 
     ln -s ../../quick-v6/res.ext/framework-debug res.ext/framework-debug
     ln -s ../../quick-v6/src.ext/framework-debug src.ext/framework-debug
