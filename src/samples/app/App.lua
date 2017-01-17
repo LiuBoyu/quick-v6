@@ -13,25 +13,40 @@ function App:ctor()
     Component(self)
         :addComponent("EventDispatcher")
         :addComponent("EventProxy")
-        :addComponent("SDK.App")
-        :addComponent("SDK.Vungle")
+        :addComponent("App.Init")
+        :addComponent("App.Ads", { vungle = true })
+        :addComponent("App.Analytics", { umeng = true })
+        :addComponent("App.IAP")
+end
 
-    -- 转发事件(Cocos)
-    local customListenerFg = cc.EventListenerCustom:create("APP_ENTER_FOREGROUND_EVENT", function()
+function App:init()
+    -- 初始化·开始
 
-        self:dispatchEvent("APP_ENTER_FOREGROUND")
-
+    -- App
+    self:listenEvent(self, "APP_ENTER_FOREGROUND", function(e)
     end)
-    local customListenerBg = cc.EventListenerCustom:create("APP_ENTER_BACKGROUND_EVENT", function()
-
-        self:dispatchEvent("APP_ENTER_BACKGROUND")
-
+    self:listenEvent(self, "APP_ENTER_BACKGROUND", function(e)
     end)
 
-    local dispatcher = cc.Director:getInstance():getEventDispatcher()
+    -- IAP
+    self:listenEvent(self, "IAP_PURCHASED", function(e)
+    end)
+    self:listenEvent(self, "IAP_CANCELLED", function(e)
+    end)
+    self:listenEvent(self, "IAP_FAILED", function(e)
+        device.showAlert("IAP Failed", "", { "OK" })
+    end)
 
-    dispatcher:addEventListenerWithFixedPriority(customListenerFg, 1)
-    dispatcher:addEventListenerWithFixedPriority(customListenerBg, 1)
+    -- Analytics
+    self:track("APP_INIT")
+
+    -- System
+    scheduler.scheduleGlobal(function()
+        G.System:flush()
+    end, 1.0)
+
+    -- 初始化·完成
+    self:dispatchEvent("APP_INIT")
 end
 
 return App

@@ -47,8 +47,6 @@ G.Config.Http    = { Update = { BaseUrl = "http://s3.amazonaws.com/cocos2dx/samp
                         API = { BaseUrl = "http://samplesv6.cocos2dx.org:8080/",
                               }}
 
-G.Config.SFS     = { Host = "12.34.56.78", Port = 6933, Zone = "samplesv6" }
-
 G.Config.Url     = {}
 
 G.Config.Cache   = { APIUserUidByFacebookGET = { storagePath = PROJ_DOC_PATH .. "caches/api/UserUidByFacebookGET/",
@@ -65,6 +63,7 @@ G.Config.Update  = { UpdatePath = PROJ_DOC_PATH .. "update/",
                      RemotePath = PROJ_DOC_PATH .. "remote/" }
 
 G.Config.Module  = require(PROJNS .. ".config.Module")
+G.Config.IAP     = require(PROJNS .. ".config.IAP")
 
 ----------------------------------------
 -- 全局配置
@@ -100,7 +99,7 @@ G.HttpClientAPI    = rl.HttpClient.new(G.Config.Http.API.BaseUrl)
 G.HttpClient       = rl.HttpClient.new()
 
 rl.G.HttpProxyClient = G.HttpClientAPI
-rl.G.HttpProxyFilter = require(PROJNS .. ".app.Init.HttpProxyFilter")
+rl.G.HttpProxyFilter = function(e) end
 
 rl.G.UIUrlPicHttpClient = G.HttpClient
 rl.G.UIUrlPicCache      = G.Config.Cache.UIUrlPic
@@ -128,5 +127,6 @@ G.Me     = require(PROJNS .. ".app.Me").new()
 -- 启动脚本
 ----------------------------------------
 
+G.App:init()
 G.Ctx:gotoMain()
 

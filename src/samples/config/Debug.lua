@@ -35,7 +35,7 @@ DEBUG_LOG_SFS2XAPI_URLS     = {
 DEBUG_LOG_COMPONENT         = false
 DEBUG_LOG_OBJECTFACTORY     = false
 DEBUG_LOG_EVENTDISPATCHER   = true
-DEBUG_LOG_EVENTLISTENER     = false
+DEBUG_LOG_EVENTLISTENER     = true
 DEBUG_LOG_SQLITEMODEL       = true
 DEBUG_LOG_UI                = true
 DEBUG_LOG_UICTX             = true
@@ -62,8 +62,7 @@ LOG["SqliteClient"]     = 3
 
 LOG["App"]              = 3
 LOG["Ctx"]              = 3
-LOG["Net"]              = 1
-LOG["SDK"]              = 3
+LOG["Net"]              = 3
 
 LOG["System"]           = 3
 LOG["Me"]               = 3
