@@ -179,6 +179,21 @@ end
 
 -- components
 
+rl.component.App = {}
+
+rl.component.App.Init       = require("framework.rl.component.App.Init")
+rl.component.App.Ads        = require("framework.rl.component.App.Ads")
+rl.component.App.Analytics  = require("framework.rl.component.App.Analytics")
+rl.component.App.IAP        = require("framework.rl.component.App.IAP")
+
+rl.component.Ctx = {}
+
+rl.component.Ctx.Init       = require("framework.rl.component.Ctx.Init")
+rl.component.Ctx.Dialog     = require("framework.rl.component.Ctx.Dialog")
+rl.component.Ctx.Debug      = require("framework.rl.component.Ctx.Debug")
+
+-- components
+
 rl.COMPONENT( "EventDispatcher", rl.component.EventDispatcher )    -- 事件分发
 rl.COMPONENT( "EventProxy",      rl.component.EventProxy )         -- 事件代理
 rl.COMPONENT( "HttpProxy",       rl.component.HttpProxy )          -- HTTP代理
@@ -217,6 +232,15 @@ rl.COMPONENT( "SDK.Dataeye",     rl.component.SDK.Dataeye )        -- SDK.Dataey
 rl.COMPONENT( "SDK.Umeng",       rl.component.SDK.Umeng )          -- SDK.Umeng
 rl.COMPONENT( "SDK.TalkingData", rl.component.SDK.TalkingData )    -- SDK.TalkingData
 rl.COMPONENT( "SDK.Adjust",      rl.component.SDK.Adjust )         -- SDK.Adjust
+
+rl.COMPONENT( "App.Init",        rl.component.App.Init )           -- App.Init
+rl.COMPONENT( "App.Ads",         rl.component.App.Ads )            -- App.Ads
+rl.COMPONENT( "App.Analytics",   rl.component.App.Analytics )      -- App.Analytics
+rl.COMPONENT( "App.IAP",         rl.component.App.IAP )            -- App.IAP
+
+rl.COMPONENT( "Ctx.Init",        rl.component.Ctx.Init )           -- Ctx.Init
+rl.COMPONENT( "Ctx.Dialog",      rl.component.Ctx.Dialog )         -- Ctx.Dialog
+rl.COMPONENT( "Ctx.Debug",       rl.component.Ctx.Debug )          -- Ctx.Debug
 
 -- components
 
