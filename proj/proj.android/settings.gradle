@@ -15,8 +15,3 @@ project(':libumeng').projectDir = new File(settingsDir, '../../../quick-v6/proj/
 include ':libvungle'
 project(':libvungle').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libvungle')
 
-include ':libsfclient'
-project(':libsfclient').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libsfclient')
-
-include ':libtalkingdata'
-project(':libtalkingdata').projectDir = new File(settingsDir, '../../../quick-v6/proj/proj.android/libs/libtalkingdata')
