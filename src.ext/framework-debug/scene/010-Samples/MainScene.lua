@@ -288,7 +288,7 @@ function M:ctor(args)
     -- UI
     ----------------
 
-    self:MENU("UI")
+    self:MENU("UI", { newline = false })
 
     -- 计时器
 
@@ -386,7 +386,7 @@ function M:ctor(args)
     -- Dialog
     ----------------
 
-    self:MENU("Dialog")
+    self:MENU("Dialog", { newline = false })
 
     self:TEST("对话框(简单)", function()
 
@@ -423,7 +423,7 @@ function M:ctor(args)
     -- Component
     ----------------
 
-    self:MENU("Component")
+    self:MENU("Component", { newline = false })
 
     self:TEST("UrlPic", function()
         clear()
@@ -663,7 +663,7 @@ function M:ctor(args)
     -- Debug
     ----------------
 
-    self:MENU("Debug")
+    self:MENU("Debug", { newline = false })
 
     -- 基准线
 

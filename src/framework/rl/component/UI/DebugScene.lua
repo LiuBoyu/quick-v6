@@ -84,6 +84,11 @@ return function(object, args)
         local x = display.left + 80 + 180 * (col - 1)
         local y = display.top  - 40 -  36 * (row - 1)
 
+        if y < 0 then
+            self:MENU(name)
+            return
+        end
+
         local node = createMenuNode(name)
             :align(display.CENTER, x, y)
             :addTo(debug)
@@ -98,6 +103,14 @@ return function(object, args)
 
         local x = display.left + 80 + 180 * (col - 1)
         local y = display.top  - 40 -  36 * (row - 1)
+
+        if y < 0 then
+            col = col + 1
+            row = 1
+
+            self:TEST(name, callback)
+            return
+        end
 
         local node = createTestNode(name, callback)
             :align(display.CENTER, x, y)
