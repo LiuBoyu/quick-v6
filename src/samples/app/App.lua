@@ -38,7 +38,7 @@ function App:init()
     end)
 
     -- Analytics
-    self:track("APP_INIT")
+    self:track("APP_INIT", function(e) return "event", { id = "A01" } end)
 
     -- System
     scheduler.scheduleGlobal(function()
