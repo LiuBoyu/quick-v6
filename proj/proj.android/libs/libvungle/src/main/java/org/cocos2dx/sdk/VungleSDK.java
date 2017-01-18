@@ -46,7 +46,7 @@ public class VungleSDK {
         @Override
         public void onAdUnavailable(String reason) {
             if (onAdEndCallback != 0) {
-                SDKUtils.callLuaFunctionOnceOnGL(onAdEndCallback, serializeOnAdEnd(false, false).toJSONString());
+                SDKUtils.callLuaFunctionOnceOnGL(onAdEndCallback, serializeOnAdUnavailable(reason).toJSONString());
                 onAdEndCallback = 0;
             }
         }
@@ -109,6 +109,14 @@ public class VungleSDK {
 
         ret.put("wasSuccessfulView", wasSuccessfulView);
         ret.put("wasCallToActionClicked", wasCallToActionClicked);
+
+        return ret;
+    }
+
+    private static JSONObject serializeOnAdUnavailable(String reason) {
+        JSONObject ret = new JSONObject();
+
+        ret.put("reason", reason);
 
         return ret;
     }
