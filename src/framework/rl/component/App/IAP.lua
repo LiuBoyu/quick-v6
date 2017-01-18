@@ -117,6 +117,9 @@ return function(object, args)
 
     object:initByIAPSDK(function(isOK, info)
         if isOK then
+            if PLATFORM_UNKNOWN then
+                info.consumableProducts = data
+            end
             for i, v in ipairs(info.consumableProducts or {}) do
 
                 local ret = object:getProductByIAP(v.id)
@@ -127,6 +130,7 @@ return function(object, args)
                 end
 
             end
+            object:logDEBUG("商品清单: %s", data)
         end
     end)
 
@@ -149,6 +153,7 @@ return function(object, args)
             return object:logWARN("支付交易: ... 失败[id=%s]", id)
         end
 
+        object:dispatchEvent("IAP_TRY_TO_PURCHASE", ret)
         object:purchaseByIAPSDK(ret.iap)
     end
 
