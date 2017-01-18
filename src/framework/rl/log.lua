@@ -36,7 +36,7 @@ local function DEBUG_TAG(tag)
 
     if not i then
 
-        i = finding(tag) or DEBUG_LOG
+        i = finding(tag) or LOG["*"] or 3
 
         cache[tag] = i
     end

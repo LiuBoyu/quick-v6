@@ -35,8 +35,8 @@ DEBUG_LOG_SFS2XAPI_URLS     = {
 DEBUG_LOG_COMPONENT         = false
 DEBUG_LOG_OBJECTFACTORY     = false
 DEBUG_LOG_EVENTDISPATCHER   = true
-DEBUG_LOG_EVENTLISTENER     = true
-DEBUG_LOG_SQLITEMODEL       = true
+DEBUG_LOG_EVENTLISTENER     = false
+DEBUG_LOG_SQLITEMODEL       = false
 DEBUG_LOG_UI                = true
 DEBUG_LOG_UICTX             = true
 DEBUG_LOG_UIBUTTON          = false
@@ -44,21 +44,19 @@ DEBUG_LOG_UIDIALOG          = false
 DEBUG_LOG_UILONGPOLL        = true
 DEBUG_LOG_UIBUSY            = true
 
--- 调试组件
-DEBUG_LOG_UI_ROOM           = true
-DEBUG_LOG_UI_SEAT           = true
-DEBUG_LOG_UI_PLAYER         = true
-
 ----------------------------------------
 -- 日志 0.Error 1.Warn 2.Info 3.Debug
 ----------------------------------------
 
-LOG = {}
+LOG = { ["*"] = 3 }
+
+LOG["SqliteClient"]     = 3
 
 LOG["HttpClient"]       = 3
-LOG["SFClient"]         = 3
 LOG["WSClient"]         = 3
-LOG["SqliteClient"]     = 3
+LOG["SFClient"]         = 3
+
+LOG["SDK"]              = 3
 
 LOG["App"]              = 3
 LOG["Ctx"]              = 3
