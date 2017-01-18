@@ -97,12 +97,20 @@ return function(object)
     end
 
     -- 分发事件
-    function object:dispatchEvent(name, payload)
+    function object:dispatchEvent(name, payload, logger)
         local listenersByEvent = listeners[name]
 
         if DEBUG_LOG_EVENTDISPATCHER then
             if payload then
-                self:logDEBUG("事件: %s - %s", name, payload)
+                local output
+
+                if logger then
+                    output = logger(payload)
+                else
+                    output = payload
+                end
+
+                self:logDEBUG("事件: %s - %s", name, output)
             else
                 self:logDEBUG("事件: %s", name)
             end
