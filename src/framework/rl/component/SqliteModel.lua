@@ -74,6 +74,9 @@ return function(object, args)
 
         -- 初始模型
         simplemodel:init(data)
+
+        -- 加载数据
+        simpledata = data
     end
 
     init()
@@ -170,7 +173,7 @@ return function(object, args)
     end
 
     simplemodel:setOnInit(function(data)
-        component:cleanDirty()
+        component:cleanDirtyBySimpleModel()
     end)
 
     simplemodel:setOnSet(function(field, value)
@@ -257,19 +260,30 @@ return function(object, args)
             return
         end
 
-        if DEBUG_LOG_SQLITEMODEL then
-            self:logDEBUG("保存数据: %s", flag)
-        end
-
         local data = self:getall()
 
         for k, v in pairs(flag) do
             if     v == "update" then
                 update(k, json.encode(data[k]))
+
+                if DEBUG_LOG_SQLITEMODEL then
+                    self:logDEBUG("刷新: [%s] = %s", k, data[k])
+                end
+
             elseif v == "delete" then
                 delete(k, json.encode(data[k]))
+
+                if DEBUG_LOG_SQLITEMODEL then
+                    self:logDEBUG("刷新: [%s] (-)= %s", k, data[k])
+                end
+
             elseif v == "insert" then
                 insert(k, json.encode(data[k]))
+
+                if DEBUG_LOG_SQLITEMODEL then
+                    self:logDEBUG("刷新: [%s] (+)= %s", k, data[k])
+                end
+
             end
         end
 
