@@ -38,7 +38,7 @@ return function(object, args)
         end
 
         -- dispatch data event
-        object:dispatchEvent("[@init]")
+        object:dispatchEvent("[@init]", data)
     end
 
     function component:dump()
@@ -71,6 +71,17 @@ return function(object, args)
 -- 对象方法·数据模型
 ----------------------------------------
 
+    local logger = {}
+
+    logger.set  = function(e) return e.v end
+    logger.incr = function(e) return string.format("%s (+%s)" , tostring(e.v), tostring(e.V)) end
+    logger.decr = function(e) return string.format("%s (-%s)" , tostring(e.v), tostring(e.V)) end
+    logger.hset = function(e) return string.format("(%s = %s)", tostring(e.K), tostring(e.V)) end
+
+----------------------------------------
+-- 对象方法·数据模型
+----------------------------------------
+
     function object:get(field)
         return data[field]
     end
@@ -80,6 +91,10 @@ return function(object, args)
             value = value( data[field] )
         end
 
+        if onSet then
+            onSet(field, value)
+        end
+
         -- set value
         data[field] = value
 
@@ -87,20 +102,44 @@ return function(object, args)
             return
         end
 
-        if onSet then
-            onSet(field, value)
-        end
-
         -- dispatch data event
-        self:dispatchEvent(string.format("[%s]", field), { k = field, v = value })
+        if opts and opts.event then
+            self:dispatchEvent(string.format("[%s]", field), opts.event, opts.logger)
+        else
+            self:dispatchEvent(string.format("[%s]", field), { k = field, v = value }, logger.set)
+        end
     end
 
     function object:getall()
         return data
     end
 
-    function object:setall(newdata)
-        component:init(newdata)
+----------------------------------------
+-- 对象方法·数据模型
+----------------------------------------
+
+    function object:incr(field, value)
+        local v = data[field]
+
+        if not v then
+            v = 0
+        end
+
+        v = v + (value or 1)
+
+        self:set(field, v, { event = { k = field, v = v, o = "incr", K = field, V = value or 1 }, logger = logger.incr })
+    end
+
+    function object:decr(field, value)
+        local v = data[field]
+
+        if not v then
+            v = 0
+        end
+
+        v = v - (value or 1)
+
+        self:set(field, v, { event = { k = field, v = v, o = "decr", K = field, V = value or 1 }, logger = logger.decr })
     end
 
 ----------------------------------------
@@ -130,7 +169,7 @@ return function(object, args)
 
         v[field] = value
 
-        self:set(k, v)
+        self:set(k, v, { event = { k = k, v = v, o = "hset", K = field, V = value }, logger = logger.hset })
     end
 
 ----------------------------------------
