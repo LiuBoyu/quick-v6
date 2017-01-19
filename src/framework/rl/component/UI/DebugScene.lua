@@ -112,6 +112,23 @@ return function(object, args)
             return
         end
 
+        local callback = function()
+            local node = self["~sandbox~"]
+
+            if node then
+                node:removeSelf()
+            end
+
+            node = display.newNode()
+                :addTo(self, 4000)
+
+            self["~sandbox~"] = node
+
+            if callback then
+                return callback(node)
+            end
+        end
+
         local node = createTestNode(name, callback)
             :align(display.CENTER, x, y)
             :addTo(debug)
