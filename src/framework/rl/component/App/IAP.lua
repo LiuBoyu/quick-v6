@@ -68,7 +68,7 @@ return function(object, args)
 ----------------------------------------
 
     local function verifyReceipt(ts, callback)
-        object:logINFO("支付校验: ... %s", ts)
+        object:logINFO("支付校验 ... 校验[%s]", ts)
 
         local receipt = ts.receipt
         local store   = "debug"
@@ -92,22 +92,22 @@ return function(object, args)
             verifyReceipt(ts, function(e, data)
                 if e then
                     object:logWARN("支付交易 ... 失败[%s]", ts)
-                    object:dispatchEvent("IAP_FAILED",    { ts = ts })
+                    object:dispatchEvent("IAP_FAILED", ts)
                 else
                     object:logINFO("支付交易 ... 成功[%s]", ts)
-                    object:dispatchEvent("IAP_PURCHASED", { ts = ts })
+                    object:dispatchEvent("IAP_PURCHASED", ts)
                 end
             end)
         end
 
         if ts.state == "Cancelled" then
             object:logINFO("支付交易 ... 取消[%s]", ts)
-            object:dispatchEvent("IAP_CANCELLED", { ts = ts })
+            object:dispatchEvent("IAP_CANCELLED", ts)
         end
 
         if ts.state == "Failed"    then
             object:logWARN("支付交易 ... 失败[%s]", ts)
-            object:dispatchEvent("IAP_FAILED",    { ts = ts })
+            object:dispatchEvent("IAP_FAILED", ts)
         end
     end)
 
