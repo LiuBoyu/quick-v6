@@ -37,6 +37,10 @@ return function(object, args)
         end)
     end
 
+    function object:reportError(msg)
+        -- todo
+    end
+
     return component
 end
 
