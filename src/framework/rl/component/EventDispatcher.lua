@@ -138,11 +138,7 @@ return function(object)
                 v:removeSelf()
             else
                 -- dispatch
-                local ok, ret = pcall(v.listener, payload)
-                -- check
-                if not ok then
-                    __G__TRACKBACK__(ret)
-                end
+                v.listener(payload)
             end
         end
     end
