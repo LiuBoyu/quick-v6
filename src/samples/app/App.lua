@@ -22,37 +22,38 @@ end
 function App:init()
     -- 初始化·开始
 
-    -- App
-    self:listenEvent(self, "APP_INIT", function(e)
-        G.System:incr("Options.App.Init")
-    end)
     self:listenEvent(self, "APP_ENTER_FOREGROUND", function(e)
     end)
     self:listenEvent(self, "APP_ENTER_BACKGROUND", function(e)
     end)
 
+    -- App
+    self:listenEvent(self, "APP_INIT", function(e)
+        G.System:incr("Options.App.Init")
+    end)
+
     -- IAP
     self:listenEvent(self, "IAP_TRY_TO_PURCHASE", function(e)
     end)
-    self:listenEvent(self, "IAP_PURCHASED", function(e)
+    self:listenEvent(self, "IAP_PURCHASED"      , function(e)
         G.System:incr("Options.Iap.Purchased")
         G.System:flush()
     end)
-    self:listenEvent(self, "IAP_CANCELLED", function(e)
+    self:listenEvent(self, "IAP_CANCELLED"      , function(e)
     end)
-    self:listenEvent(self, "IAP_FAILED", function(e)
+    self:listenEvent(self, "IAP_FAILED"         , function(e)
         device.showAlert("IAP Failed", "", { "OK" })
     end)
 
     -- Ads
-    self:listenEvent(self, "ADS_TRY_TO_PLAY", function(e)
+    self:listenEvent(self, "ADS_TRY_TO_PLAY"   , function(e)
     end)
     self:listenEvent(self, "ADS_PLAY_COMPLETED", function(e)
         G.System:incr("Options.Ads.Played")
     end)
     self:listenEvent(self, "ADS_PLAY_CANCELLED", function(e)
     end)
-    self:listenEvent(self, "ADS_PLAY_FAILED", function(e)
+    self:listenEvent(self, "ADS_PLAY_FAILED"   , function(e)
     end)
 
     -- Analytics
