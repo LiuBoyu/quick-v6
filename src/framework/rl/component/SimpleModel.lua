@@ -23,6 +23,7 @@ return function(object, args)
     local shortcuts = args.shortcuts
 
     local onInit
+    local onSetting
     local onSet
 
 ----------------------------------------
@@ -63,6 +64,10 @@ return function(object, args)
         onInit = callback
     end
 
+    function component:setOnSetting(callback)
+        onSetting = callback
+    end
+
     function component:setOnSet(callback)
         onSet = callback
     end
@@ -91,22 +96,36 @@ return function(object, args)
             value = value( data[field] )
         end
 
-        if onSet then
-            onSet(field, value)
+        local event
+
+        if opts and opts.event then
+            event = opts.event
+        else
+            event = { k = field, v = value }
         end
 
         -- set value
+
+        if onSetting then
+            onSetting(field, value)
+        end
+
         data[field] = value
+
+        if onSet then
+            onSet(event)
+        end
+
+        -- dispatch data event
 
         if opts and opts.forced then
             return
         end
 
-        -- dispatch data event
-        if opts and opts.event then
-            self:dispatchEvent(string.format("[%s]", field), opts.event, opts.logger)
+        if opts and opts.logger then
+            self:dispatchEvent(string.format("[%s]", field), event, opts.logger)
         else
-            self:dispatchEvent(string.format("[%s]", field), { k = field, v = value }, logger.set)
+            self:dispatchEvent(string.format("[%s]", field), event, logger.set)
         end
     end
 

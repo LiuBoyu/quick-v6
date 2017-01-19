@@ -92,34 +92,107 @@ return function(object)
 -- 对象方法·调试框架
 ----------------------------------------
 
-    function object:createDebugModelUI(data, list)
+    function object:createSimpleModelUI(data, filters)
         local node = display.newNode()
-        node.label = {}
+        local keys = {}
 
-        UI(node, { class = "DebugModelUI" })
+        UI(node, { class = "SimpleModelUI" })
             :addComponent("EventProxy")
 
-        local lbl = display.newText({ text = "<<" .. data:getObjectName() .. ">>", size = 12, font = Font.Default, color = cc.c3b(0,255,255) })
-            :align(display.LEFT_BOTTOM, 0, #list * 10)
-            :addTo(node)
+        local createKeyUI = function(k)
+            local keyUI = display.newNode()
 
-        for i, k in pairs(list) do
-            local lbl = display.newText({ size = 12, font = Font.Default, color = cc.c3b(0,255,255) })
-                :align(display.LEFT_BOTTOM, 0, (#list - i) * 10)
-                :addTo(node)
+            local kUI = display.newText({ size = 16, font = Font.Default, color = cc.c3b(0,255,0) })
+                :align(display.RIGHT_CENTER, 4, 0)
+                :addTo(keyUI)
+            local vUI = display.newText({ size = 16, font = Font.Default, color = cc.c3b(0,255,0) })
+                :align(display.LEFT_CENTER, 4, 0)
+                :addTo(keyUI)
+
+            keyUI.kUI = kUI
+            keyUI.vUI = vUI
+
+            kUI:setText(k .. ": ")
 
             node:listenModelByInit(data, k, function(e)
-                lbl:setText(k .. ": " .. tostring(data:get(k)))
+                local k, v = e.k, e.v
+                local filter
+
+                if filters then
+                    filter = filters[k] or filters["*"]
+                end
+
+                if filter then
+                    if type(filter) == "function" then
+                        filter(k, v, keyUI)
+                    end
+                else
+                    vUI:setText(tostring(v))
+                end
             end)
 
-            node.label[k] = lbl
+            keys[k] = keyUI
+
+            return keyUI
+        end
+
+        local titleUI = display.newText({ text = "<" .. data:getObjectName() .. ">", size = 16, font = Font.Default, color = cc.c3b(0,255,0) })
+            :align(display.CENTER, 0, 0)
+            :addTo(node)
+
+        local keysUI = display.newNode()
+            :addTo(node)
+
+        UI:Button(titleUI, { mode = "fast" })
+
+        titleUI:setOnTap(function()
+            if keysUI:isVisible() then
+                keysUI:hide()
+            else
+                keysUI:show()
+            end
+        end)
+
+        for k, v in pairs(data:getall()) do
+            local keyUI = createKeyUI(k)
+                :addTo(keysUI)
         end
 
         function node:reloadUI()
-            for k, v in pairs(node.label) do
-                v:setText(k .. ": " .. tostring(data:get(k)))
+            local t = {}
+
+            for k, v in pairs(keys) do
+                if keys[k]:isVisible() then
+                    t[#t+1] = k
+                end
+            end
+
+            table.sort(t)
+
+            for i, k in ipairs(t) do
+                local v = keys[k]
+
+                v:pos(0, -i * 14 - 4)
             end
         end
+
+        node:reloadUI()
+
+        local simplemodel = data:getComponent("SimpleModel")
+
+        simplemodel:setOnSet(function(e)
+            local k = e.k
+            local v = e.v
+
+            if keys[k] then
+                return
+            end
+
+            local keyUI = createKeyUI(k)
+                :addTo(keysUI)
+
+            node:reloadUI()
+        end)
 
         return node
     end

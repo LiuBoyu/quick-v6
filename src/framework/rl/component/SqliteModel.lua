@@ -176,7 +176,7 @@ return function(object, args)
         component:cleanDirtyBySimpleModel()
     end)
 
-    simplemodel:setOnSet(function(field, value)
+    simplemodel:setOnSetting(function(field, value)
         if component:checkFlush(field, value) then
             checkdirtyBySimpleModel(field, value)
         end
