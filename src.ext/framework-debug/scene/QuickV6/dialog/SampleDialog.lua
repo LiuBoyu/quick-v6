@@ -1,23 +1,23 @@
 
-local res = "framework-debug/scene/010-Samples/"
+local res = "framework-debug/scene/QuickV6/"
 
 local Img = {
-    Background  = res .. "card1.png",
-    Option      = res .. "option.png",
+    Close   = res .. "close.png",
+    Bg      = res .. "card.png",
 }
 
-local Dialog = class("Sample01Dialog", function()
+local Dialog = class("SampleDialog", function()
     return display.newNode()
 end)
 
 function Dialog:ctor( args )
     UI:Dialog(self, { mode = args.mode, bgcolor = {0,0,0,127} })
 
-    local a = display.newSprite(Img.Background)
+    local a = display.newSprite(Img.Bg)
         :align(display.CENTER, 0, 0)
         :addTo(self)
 
-    local b = display.newSprite(Img.Option)
+    local b = display.newSprite(Img.Close)
         :align(display.CENTER, 80, 125)
         :addTo(self)
     UI:Button(b)
