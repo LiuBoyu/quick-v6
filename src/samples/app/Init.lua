@@ -43,9 +43,9 @@ G.Config.App     = { Id      = APP_ID,
 G.Config.Sqlite  = { FilePath = PROJ_DOC_PATH,
                      FileName = PROJNS .. ".db" }
 
-G.Config.Http    = { Update = { BaseUrl = "http://s3.amazonaws.com/cocos2dx/samplesv6/update/",
+G.Config.Http    = { Update = { BaseUrl = "http://s3.amazonaws.com/cocos2dx/quickv6/update/",
                               },
-                        API = { BaseUrl = "http://samplesv6.cocos2dx.org:8080/",
+                        API = { BaseUrl = "http://quickv6.cocos2dx.org:8080/",
                               }}
 
 G.Config.Url     = {}
@@ -66,6 +66,8 @@ G.Config.Update  = { UpdatePath = PROJ_DOC_PATH .. "update/",
 G.Config.Module  = require(PROJNS .. ".config.Module")
 G.Config.IAP     = require(PROJNS .. ".config.IAP")
 
+log.debug("Config: %s", G.Config)
+
 ----------------------------------------
 -- 全局配置
 ----------------------------------------
@@ -73,8 +75,6 @@ G.Config.IAP     = require(PROJNS .. ".config.IAP")
 if DEBUG > 0 then
     require(PROJNS .. "-debug.config")
 end
-
-log.debug("Config: %s", G.Config)
 
 ----------------------------------------
 -- FilePath
