@@ -1,6 +1,4 @@
 
-local res = PROJNS .. "/scene/StartUp/"
-
 local MainScene = class("MainScene", function()
     return display.newScene()
 end)

@@ -6,7 +6,7 @@ if COCOS2D_DEBUG then
 end
 
 -- 项目名称
-PROJNS = "samples"
+PROJNS = "quickv6"
 PROJID = "SPS-V6"
 
 -- 项目路径

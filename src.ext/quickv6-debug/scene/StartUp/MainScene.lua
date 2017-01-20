@@ -3,8 +3,8 @@ local M = class("UnitTest", function()
     return display.newScene()
 end)
 
-function M:ctor(args)
-    UI:DebugScene(self, args)
+function M:ctor()
+    UI:DebugScene(self)
 
     self:MENU("Scene")
     self:TEST("Main",       function() G.Ctx:goto("Main")      end)

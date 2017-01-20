@@ -10,9 +10,9 @@ DEBUG_LOG = DEBUG_LOG or 1
 -- 应用配置
 ----------------------------------------
 
-APP_ID      = "org.cocos2dx.samplesv6"
+APP_ID      = "org.cocos2dx.quickv6"
 
-APP_NAME    = "SPS-V6"
+APP_NAME    = "quickv6"
 APP_CODE    = "SPS-V6"
 
 APP_PRODUCT = "SPS"
