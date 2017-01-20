@@ -3,12 +3,9 @@
 -- 调试
 ----------------------------------------
 
--- 调试日志
-DEBUG_LOG = 3
-
 -- 调试信息
-DEBUG_FPS = true
-DEBUG_MEM = true
+DEBUG_FPS = false
+DEBUG_MEM = false
 
 -- 调试开关
 DEBUG_OFF_CACHE             = false

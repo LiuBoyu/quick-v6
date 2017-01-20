@@ -1,25 +1,23 @@
 
-----------------------------------------
+----------------
 -- 文本(多语言)
-----------------------------------------
+----------------
 
--- EN_US     英语 - 美国
--- ZH_CN     汉语 - 中国
+local M = {}
 
-----------------------------------------
--- 文本(多语言)
-----------------------------------------
-
-Text = {}
-
-setmetatable(Text, { __call = function(self, id, language)
-    return self[id .. "_" .. (language or LANGUAGE or "EN_US")] or self[id .. "_" .. "EN_US"] or "???"
+setmetatable(M, { __call = function(self, id, language)
+    return self[language or LANGUAGE or "EN_US"][id] or id
 end })
+
+M["EN_US"] = {} -- 英语 - 美国
+M["ZH_CN"] = {} -- 汉语 - 中国
 
 ----------------
 -- language
 ----------------
 
-Text.LANGUAGE_EN_US = "ENGLISH"
-Text.LANGUAGE_ZH_CN = "简体中文"
+M["EN_US"]["LANGUAGE"] = "ENGLISH"
+M["ZH_CN"]["LANGUAGE"] = "简体中文"
+
+return M
 

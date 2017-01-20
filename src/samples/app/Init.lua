@@ -10,14 +10,11 @@ DESIGN_SCREEN_HEIGHT = 540 -- 540 -> 540
 -- 框架初始化
 ----------------------------------------
 
+if DEBUG > 0 then
+    require(PROJNS .. ".config.Debug")
+end
+
 require("framework.rl.init")
-
-----------------------------------------
--- 全局配置
-----------------------------------------
-
-require(PROJNS .. ".config.Font")
-require(PROJNS .. ".config.Text")
 
 ----------------------------------------
 -- 全局配置
@@ -70,11 +67,10 @@ G.Config.IAP     = require(PROJNS .. ".config.IAP")
 ----------------------------------------
 
 if DEBUG > 0 then
-    require(PROJNS .. ".config.Debug")
     require(PROJNS .. "-debug.config")
 end
 
-log.info("Config: %s", G.Config)
+log.debug("Config: %s", G.Config)
 
 ----------------------------------------
 -- FilePath
@@ -122,6 +118,16 @@ rl.G.Net = G.Net
 
 G.System = require(PROJNS .. ".app.System").new()
 G.Me     = require(PROJNS .. ".app.Me").new()
+
+----------------------------------------
+-- 初始脚本
+----------------------------------------
+
+G.Font = require(PROJNS .. ".config.Font")
+G.Text = require(PROJNS .. ".config.Text")
+
+rl.G.Font = G.Font
+rl.G.Text = G.Text
 
 ----------------------------------------
 -- 启动脚本
