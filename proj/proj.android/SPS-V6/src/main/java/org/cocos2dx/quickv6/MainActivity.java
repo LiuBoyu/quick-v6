@@ -17,7 +17,7 @@ public class MainActivity extends Cocos2dxActivity {
         // 锁定屏幕
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         // 初始化
-        SDKUtils.setDebug(org.cocos2dx.samplesv6.BuildConfig.DEBUG);
+        SDKUtils.setDebug(org.cocos2dx.quickv6.BuildConfig.DEBUG);
         SDKUtils.setContext(this);
 
         // Config

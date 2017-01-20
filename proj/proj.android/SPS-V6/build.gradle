@@ -14,7 +14,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "org.cocos2dx.samplesv6"
+        applicationId "org.cocos2dx.quickv6"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -52,7 +52,7 @@ android {
 task buildLUA(type: Exec) {
     workingDir '.'
     executable './build.sh'
-    args('samples', 'QuickV6')
+    args('quickv6', 'QuickV6')
 }
 
 tasks.whenTaskAdded { task ->
