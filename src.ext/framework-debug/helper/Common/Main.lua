@@ -94,17 +94,25 @@ return function()
             systemUI:removeSelf()
             systemUI = nil
         else
-            systemUI = G.Ctx:createSimpleModelUI(G.System, {
-                ["Debug.ScenePath"] = "hidden",
-            }):scale(0.8)
+            systemUI = G.Ctx:createSimpleModelUI(G.System, { ["Debug.*"] = "hide" })
                 :align(display.CENTER, display.width * 1 / 4, display.top - 20)
+                :scale(0.8)
                 :addTo(G.Ctx:getSceneObject():getComponent("UI.Scene"):getEditor(), 100)
         end
-        log.info("System: %s", G.System:getall())
     end)
 
+    local meUI
+
     sceneObject:TEST("Me", function()
-        log.info("Me: %s", G.Me:getall())
+        if meUI then
+            meUI:removeSelf()
+            meUI = nil
+        else
+            meUI = G.Ctx:createSimpleModelUI(G.Me, { ["Debug.*"] = "hide" })
+                :align(display.CENTER, display.width * 3 / 4, display.top - 20)
+                :scale(0.8)
+                :addTo(G.Ctx:getSceneObject():getComponent("UI.Scene"):getEditor(), 100)
+        end
     end)
 
 end

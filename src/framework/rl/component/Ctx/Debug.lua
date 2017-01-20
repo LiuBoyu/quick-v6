@@ -119,12 +119,35 @@ return function(object)
                 local filter
 
                 if filters then
-                    filter = filters[k] or filters["*"]
+                    if not filter then
+                        filter = filters[k]
+                    end
+
+                    if not filter then
+                        for _k, _v in pairs(filters) do
+                            if string.endswith(_k, ".*") then
+                                if string.startswith(k, string.sub(_k, 1, -2)) then
+                                    filter = filters[_k]
+                                    break
+                                end
+                            end
+                        end
+                    end
+
+                    if not filter then
+                        filter = filters["*"]
+                    end
                 end
 
                 if filter then
                     if type(filter) == "function" then
                         filter(k, v, keyUI)
+                    else
+                        if filter == "hide" then
+                            if keyUI:isVisible() then
+                                keyUI:hide()
+                            end
+                        end
                     end
                 else
                     vUI:setText(tostring(v))
