@@ -34,8 +34,8 @@ function create()
     ln -s ../../quick-v6/src.ext/framework-debug src.ext/framework-debug
     ln -s ../../quick-v6/src/framework           src/framework
 
-    cp -r ../quick-v6/src.ext/samples-debug src.ext/$PROJNS-debug
-    cp -r ../quick-v6/src/samples           src/$PROJNS
+    cp -r ../quick-v6/src.ext/quickv6-debug src.ext/$PROJNS-debug
+    cp -r ../quick-v6/src/quickv6           src/$PROJNS
     cp    ../quick-v6/src/main.lua          src
     cp    ../quick-v6/.gitignore            .
 
@@ -87,9 +87,10 @@ function android()
     cp ../../../quick-v6/proj/proj.android/SPS-V6/README.md          $PROJID
     cp ../../../quick-v6/proj/proj.android/SPS-V6/SPS-V6.txt         $PROJID/$PROJID.txt
 
-    sed -i "" "s/'samples'/'$PROJNS'/g" $PROJID/build.gradle
-    sed -i "" "s/SPS-V6/$PROJID/g"      $PROJID/build.gradle
-    sed -i "" "s/SPS-V6/$PROJID/g"      $PROJID/README.md
+    sed -i "" "s/org.cocos2dx.quickv6/$PROJPK/g" $PROJID/build.gradle
+    sed -i "" "s/('quickv6',/('$PROJNS',/g"      $PROJID/build.gradle
+    sed -i "" "s/SPS-V6/$PROJID/g"               $PROJID/build.gradle
+    sed -i "" "s/SPS-V6/$PROJID/g"               $PROJID/README.md
 
     mkdir $PROJID/src
     mkdir $PROJID/src/debug
@@ -110,13 +111,13 @@ function android()
 
     cp -r ../../../quick-v6/proj/proj.android/SPS-V6/src/main               $PROJID/src
 
-    sed -i "" "s/org.cocos2dx.samplesv6/$PROJPK/g" $PROJID/build.gradle
-    sed -i "" "s/org.cocos2dx.samplesv6/$PROJPK/g" $PROJID/src/main/AndroidManifest.xml
-    sed -i "" "s/Samples V6/$PROJID/g"             $PROJID/src/main/res/values/strings.xml
+    sed -i "" "s/\"org.cocos2dx.quickv6\"/\"$PROJPK\"/g" $PROJID/src/main/AndroidManifest.xml
+    sed -i "" "s/QuickV6/$PROJID/g"                      $PROJID/src/main/res/values/strings.xml
 
-    sed -i "" "s/org.cocos2dx.samplesv6/$PROJPK/g" $PROJID/src/main/java/org/cocos2dx/quickv6/MainActivity.java
-    sed -i "" "s/samples/$PROJNS/g"                $PROJID/src/release/assets/src/main.lua
-    sed -i "" "s/SPS-V6/$PROJID/g"                 $PROJID/src/release/assets/src/main.lua
+    sed -i "" "s/org.cocos2dx.quickv6.BuildConfig/$PROJPK.BuildConfig/g" $PROJID/src/main/java/org/cocos2dx/quickv6/MainActivity.java
+
+    sed -i "" "s/quickv6/$PROJNS/g"                      $PROJID/src/release/assets/src/main.lua
+    sed -i "" "s/SPS-V6/$PROJID/g"                       $PROJID/src/release/assets/src/main.lua
 
     cd $PROJID
     keytool -genkey -keyalg RSA -keysize 1024 -validity 36500 -keystore $PROJID.keystore -storepass quickv6 -alias $PROJID -keypass quickv6 < $PROJID.txt
