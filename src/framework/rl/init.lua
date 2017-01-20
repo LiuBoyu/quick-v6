@@ -32,14 +32,8 @@ print("================================")
 print("        LOAD FRAMEWORK          ")
 print("================================")
 
-debug.outputENV()
-
-function requireByNS(filename)
-    if string.startswith(filename, ".") then
-        return require(APP_NS .. filename)
-    else
-        return require(filename)
-    end
+if DEBUG > 0 then
+    debug.outputENV()
 end
 
 -- global

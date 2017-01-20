@@ -12,7 +12,7 @@ DEBUG_LOG = DEBUG_LOG or 1
 
 APP_ID      = "org.cocos2dx.quickv6"
 
-APP_NAME    = "quickv6"
+APP_NAME    = "QuickV6"
 APP_CODE    = "SPS-V6"
 
 APP_PRODUCT = "SPS"
