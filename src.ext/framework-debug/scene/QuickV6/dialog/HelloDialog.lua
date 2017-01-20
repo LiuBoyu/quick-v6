@@ -6,7 +6,7 @@ local Img = {
     Bg      = res .. "card.png",
 }
 
-local Dialog = class("SampleDialog", function()
+local Dialog = class("HelloDialog", function()
     return display.newNode()
 end)
 

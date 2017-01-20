@@ -333,13 +333,13 @@ function M:ctor()
 
     self:TEST("对话框(简单)", function(sandbox)
 
-        G.Ctx:showDialog("SampleDialog", { mode = 1 })
+        G.Ctx:showDialog("HelloDialog", { mode = 1 })
 
     end)
 
     self:TEST("对话框(遮盖)", function(sandbox)
 
-        G.Ctx:showDialog("SampleDialog", { mode = 2 })
+        G.Ctx:showDialog("HelloDialog", { mode = 2 })
 
     end)
 
