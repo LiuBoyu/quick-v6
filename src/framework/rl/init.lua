@@ -50,6 +50,9 @@ rl.G = {}
 -- rl.G.App
 -- rl.G.Ctx
 
+-- rl.G.Font
+-- rl.G.Text
+
 -- rl.G.HttpProxyClient
 -- rl.G.HttpProxyFilter
 

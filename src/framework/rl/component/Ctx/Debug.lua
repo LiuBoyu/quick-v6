@@ -102,10 +102,10 @@ return function(object)
         local createKeyUI = function(k)
             local keyUI = display.newNode()
 
-            local kUI = display.newText({ size = 16, font = Font.Default, color = cc.c3b(0,255,0) })
+            local kUI = display.newText({ size = 16, font = "Default", color = cc.c3b(0,255,0) })
                 :align(display.RIGHT_CENTER, 4, 0)
                 :addTo(keyUI)
-            local vUI = display.newText({ size = 16, font = Font.Default, color = cc.c3b(0,255,0) })
+            local vUI = display.newText({ size = 16, font = "Default", color = cc.c3b(0,255,0) })
                 :align(display.LEFT_CENTER, 4, 0)
                 :addTo(keyUI)
 
@@ -136,7 +136,7 @@ return function(object)
             return keyUI
         end
 
-        local titleUI = display.newText({ text = "<" .. data:getObjectName() .. ">", size = 16, font = Font.Default, color = cc.c3b(0,255,0) })
+        local titleUI = display.newText({ text = "<" .. data:getObjectName() .. ">", size = 16, font = "Default", color = cc.c3b(0,255,0) })
             :align(display.CENTER, 0, 0)
             :addTo(node)
 

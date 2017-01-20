@@ -17,7 +17,7 @@ function AlertDialog:ctor(args)
     if AlertUI then
         alertUI = AlertUI.new(args)
     else
-        alertUI = display.newText({ text = text , size = 24, font = Font.Bold })
+        alertUI = display.newText({ text = text , size = 24, font = "Bold" })
     end
 
     alertUI:align(display.CENTER, display.cx, display.cy):addTo(self)

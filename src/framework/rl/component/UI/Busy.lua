@@ -137,7 +137,7 @@ return function(object, args)
                 wait:scale(s0)
 
                 if DEBUG_LOG_UIBUSY then
-                    local tsUI = display.newText({ text = "[ 0 ]", size = 24, font = Font.Bold })
+                    local tsUI = display.newText({ text = "[ 0 ]", size = 24, font = "Bold" })
                         :align(display.CENTER, 0, 0)
                         :addTo(wait, 9999)
 

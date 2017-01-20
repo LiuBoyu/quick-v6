@@ -104,6 +104,12 @@ function display.newText(args)
 
     local outline, shadow
 
+    if type(font) == "string" then
+        if rl.G.Font[font] then
+            font = rl.G.Font[font]
+        end
+    end
+
     if type(font) == "table" then
         outline = font.outline
         shadow  = font.shadow
@@ -189,7 +195,7 @@ function display.newTextByI18N(args)
     local id       = args.id
 
     function label:setI18N(i18n)
-        self:setText(Text(id, i18n))
+        self:setText(rl.G.Text(id, i18n))
         language = i18n
     end
 
