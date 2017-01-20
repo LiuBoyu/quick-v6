@@ -23,19 +23,26 @@ return function()
             local W = DESIGN_SCREEN_WIDTH
             local H = DESIGN_SCREEN_HEIGHT
 
-            local min =  4/3
-            local max = 16/9
+            local max, min
+
+            if W > H then
+                min =  4/3
+                max = 16/9
+            else
+                min = 9/16
+                max =  3/4
+            end
 
             local w = (H * min)/2
             local h = (W / max)/2
 
-            local a = display.newLine({ {display.cx - w, 0}, {display.cx - w, H} }, { borderColor = cc.c4f(1.0, 0.0, 0.0, 0.8), borderWidth = 2 })
+            local a = display.newLine({ {display.cx - w, 0}, {display.cx - w, H} }, { borderColor = cc.c4f(1.0, 0.0, 0.0, 0.8), borderWidth = 3 })
                 :addTo(baseline)
-            local b = display.newLine({ {display.cx + w, 0}, {display.cx + w, H} }, { borderColor = cc.c4f(1.0, 0.0, 0.0, 0.8), borderWidth = 2 })
+            local b = display.newLine({ {display.cx + w, 0}, {display.cx + w, H} }, { borderColor = cc.c4f(1.0, 0.0, 0.0, 0.8), borderWidth = 3 })
                 :addTo(baseline)
-            local c = display.newLine({ {0, display.cy - h}, {W, display.cy - h} }, { borderColor = cc.c4f(1.0, 0.0, 0.0, 0.8), borderWidth = 2 })
+            local c = display.newLine({ {0, display.cy - h}, {W, display.cy - h} }, { borderColor = cc.c4f(1.0, 0.0, 0.0, 0.8), borderWidth = 3 })
                 :addTo(baseline)
-            local d = display.newLine({ {0, display.cy + h}, {W, display.cy + h} }, { borderColor = cc.c4f(1.0, 0.0, 0.0, 0.8), borderWidth = 2 })
+            local d = display.newLine({ {0, display.cy + h}, {W, display.cy + h} }, { borderColor = cc.c4f(1.0, 0.0, 0.0, 0.8), borderWidth = 3 })
                 :addTo(baseline)
         end
     end)
