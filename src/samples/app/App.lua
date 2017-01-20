@@ -22,6 +22,7 @@ end
 function App:init()
     -- 初始化·开始
 
+    -- App
     self:listenEvent(self, "APP_ENTER_FOREGROUND", function(e)
     end)
     self:listenEvent(self, "APP_ENTER_BACKGROUND", function(e)

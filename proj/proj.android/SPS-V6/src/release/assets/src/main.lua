@@ -1,5 +1,5 @@
 
--- 命名空间
+-- 项目名称
 PROJNS = "samples"
 PROJID = "SPS-V6"
 
