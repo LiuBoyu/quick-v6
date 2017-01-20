@@ -81,17 +81,25 @@ return function()
         end
     end)
 
-    sceneObject:TEST("Console", function()
-        sceneObject:CONSOLE("@toggle")
-    end)
-
     sceneObject:MENU("Debug", { newline = false })
 
     sceneObject:TEST("Config", function()
         log.info("Config: %s", G.Config)
     end)
 
+    local systemUI
+
     sceneObject:TEST("System", function()
+        if systemUI then
+            systemUI:removeSelf()
+            systemUI = nil
+        else
+            systemUI = G.Ctx:createSimpleModelUI(G.System, {
+                ["Debug.ScenePath"] = "hidden",
+            }):scale(0.8)
+                :align(display.CENTER, display.width * 1 / 4, display.top - 20)
+                :addTo(G.Ctx:getSceneObject():getComponent("UI.Scene"):getEditor(), 100)
+        end
         log.info("System: %s", G.System:getall())
     end)
 

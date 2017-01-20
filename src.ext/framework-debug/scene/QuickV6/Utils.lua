@@ -3,44 +3,44 @@ local M = class("UnitTest", function()
     return display.newScene()
 end)
 
-function M:ctor(args)
-    UI:DebugScene(self, args)
+function M:ctor()
+    UI:DebugScene(self)
 
-    local ctUI = display.newText({ text = "0", size = 16, font = Font.Default })
+    local ctUI = display.newText({ text = "0", size = 16, font = "Default"  })
             :align(display.LEFT_CENTER, 10+150*0, 10)
             :addTo(self)
-    local lvUI = display.newText({ text = "0", size = 16, font = Font.Default })
+    local lvUI = display.newText({ text = "0", size = 16, font = "Default"  })
             :align(display.LEFT_CENTER, 10+150*1, 10)
             :addTo(self)
-    local xUI = display.newText({ text = "0", size = 16, font = Font.Default })
+    local xUI = display.newText({ text = "0", size = 16, font = "Default"  })
             :align(display.LEFT_CENTER, 10+150*0, 10+20*1)
             :addTo(self)
-    local yUI = display.newText({ text = "0", size = 16, font = Font.Default })
+    local yUI = display.newText({ text = "0", size = 16, font = "Default"  })
             :align(display.LEFT_CENTER, 10+150*1, 10+20*1)
             :addTo(self)
-    local vxUI = display.newText({ text = "0", size = 16, font = Font.Default })
+    local vxUI = display.newText({ text = "0", size = 16, font = "Default"  })
             :align(display.LEFT_CENTER, 10+150*0, 10+20*2)
             :addTo(self)
-    local vyUI = display.newText({ text = "0", size = 16, font = Font.Default })
+    local vyUI = display.newText({ text = "0", size = 16, font = "Default"  })
             :align(display.LEFT_CENTER, 10+150*1, 10+20*2)
             :addTo(self)
-    local axUI = display.newText({ text = "0", size = 16, font = Font.Default })
+    local axUI = display.newText({ text = "0", size = 16, font = "Default"  })
             :align(display.LEFT_CENTER, 10+150*0, 10+20*3)
             :addTo(self)
-    local ayUI = display.newText({ text = "0", size = 16, font = Font.Default })
+    local ayUI = display.newText({ text = "0", size = 16, font = "Default"  })
             :align(display.LEFT_CENTER, 10+150*1, 10+20*3)
             :addTo(self)
 
-    local vx1UI = display.newText({ text = "vx+", size = 32, font = Font.Default })
+    local vx1UI = display.newText({ text = "vx+", size = 32, font = "Default"  })
             :align(display.LEFT_CENTER, display.cx-40, 30*2)
             :addTo(self)
-    local vx2UI = display.newText({ text = "vx-", size = 32, font = Font.Default })
+    local vx2UI = display.newText({ text = "vx-", size = 32, font = "Default"  })
             :align(display.LEFT_CENTER, display.cx+40, 30*2)
             :addTo(self)
-    local vy1UI = display.newText({ text = "vy+", size = 32, font = Font.Default })
+    local vy1UI = display.newText({ text = "vy+", size = 32, font = "Default"  })
             :align(display.LEFT_CENTER, display.cx-40, 30*1)
             :addTo(self)
-    local vy2UI = display.newText({ text = "vy-", size = 32, font = Font.Default })
+    local vy2UI = display.newText({ text = "vy-", size = 32, font = "Default"  })
             :align(display.LEFT_CENTER, display.cx+40, 30*1)
             :addTo(self)
 
@@ -59,15 +59,6 @@ function M:ctor(args)
     vx2UI:setOnTap(function() vx = vx - 20 end)
     vy1UI:setOnTap(function() vy = vy + 20 end)
     vy2UI:setOnTap(function() vy = vy - 20 end)
-
-    local clear = function()
-        if self.node then
-            self.node:removeSelf()
-        end
-        self.node = display.newNode()
-            :addTo(self)
-        ct = 0
-    end
 
     self:addNodeEventListener(cc.NODE_ENTER_FRAME_EVENT, function(dt)
         if update then
@@ -90,11 +81,9 @@ function M:ctor(args)
 
     self:MENU("Util")
 
-    self:TEST("直线", function()
-        clear()
-
+    self:TEST("直线", function(sandbox)
         local c = cc.DrawNode:create()
-            :addTo(self.node)
+            :addTo(sandbox)
 
          x,  y = display.cx, display.cy
         vx, vy = math.sqrt(100*100/2), math.sqrt(100*100/2)
@@ -113,11 +102,9 @@ function M:ctor(args)
         end
     end)
 
-    self:TEST("圆形", function()
-        clear()
-
+    self:TEST("圆形", function(sandbox)
         local c = cc.DrawNode:create()
-            :addTo(self.node)
+            :addTo(sandbox)
 
          x,  y = display.cx, display.cy
         vx, vy = 0, 0
@@ -138,11 +125,9 @@ function M:ctor(args)
         end
     end)
 
-    self:TEST("贝塞尔二阶", function()
-        clear()
-
+    self:TEST("贝塞尔二阶", function(sandbox)
         local c = cc.DrawNode:create()
-            :addTo(self.node)
+            :addTo(sandbox)
 
          x,  y = display.cx, display.cy
         vx, vy = 0, 0

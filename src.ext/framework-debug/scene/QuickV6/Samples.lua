@@ -45,7 +45,7 @@ function M:ctor(args)
     self:TEST("文本(TTF.EN)", function()
         clear()
 
-        local a = display.newText({ text = "HelloWorld", size = 32, font = Font.Default })
+        local a = display.newText({ text = "HelloWorld", size = 32, font = "Default"  })
             :align(display.CENTER, display.cx, display.cy)
             :addTo(self.node)
     end)
@@ -53,7 +53,7 @@ function M:ctor(args)
     self:TEST("文本(TTF.CN)", function()
         clear()
 
-        local a = display.newText({ text = "< english 简体中文 हिन्दी বাংলা मराठी ગુજરાતી >", size = 32, font = Font.Default })
+        local a = display.newText({ text = "< english 简体中文 हिन्दी বাংলা मराठी ગુજરાતી >", size = 32, font = "Default"  })
             :align(display.CENTER, display.cx, display.cy)
             :addTo(self.node)
     end)
@@ -63,7 +63,7 @@ function M:ctor(args)
     self:TEST("数字(静态)", function()
         clear()
 
-        local a = display.newNumber({ text = 0, size = 32, font = Font.Default })
+        local a = display.newNumber({ text = 0, size = 32, font = "Default"  })
             :align(display.CENTER, display.cx, display.cy - 50)
             :addTo(self.node)
     end)
@@ -71,7 +71,7 @@ function M:ctor(args)
     self:TEST("数字(动态)", function()
         clear()
 
-        local a = display.newNumber({ text = 0, size = 32, font = Font.Default })
+        local a = display.newNumber({ text = 0, size = 32, font = "Default"  })
             :align(display.CENTER, display.cx, display.cy - 50)
             :addTo(self.node)
 
@@ -96,7 +96,7 @@ function M:ctor(args)
     self:TEST("按钮(文字)", function()
         clear()
 
-        local a = display.newText({ text = "HelloWorld", size = 32, font = Font.Default })
+        local a = display.newText({ text = "HelloWorld", size = 32, font = "Default"  })
             :align(display.CENTER, display.cx, display.cy)
             :addTo(self.node)
         UI:Button(a)
@@ -312,7 +312,7 @@ function M:ctor(args)
         for i = 1, 6 do
             local language = l[i]
 
-            local o = display.newText({ text = language, size = 32, font = Font.Default })
+            local o = display.newText({ text = language, size = 32, font = "Default"  })
                 :align(display.CENTER, display.cx+200, display.cy + 160 - 40 * i)
                 :addTo(self.node)
             UI:Button(o)
@@ -338,7 +338,7 @@ function M:ctor(args)
         local l = { "EN_US", "ZH_CN", "HI_IN", "BN_IN", "MR_IN", "GU_IN" }
 
         for i = 1, 6 do
-            local o = display.newText({ text = l[i], size = 32, font = Font.Default })
+            local o = display.newText({ text = l[i], size = 32, font = "Default"  })
                 :align(display.CENTER, display.cx+200, display.cy + 160 - 40 * i)
                 :addTo(self.node)
             UI:Button(o)
@@ -634,7 +634,7 @@ function M:ctor(args)
         local y = display.cy + 100
 
         local output = function(v)
-            display.newNumber({ text = v, size = 32, font = Font.Default, thousands = true, shorts = true })
+            display.newNumber({ text = v, size = 32, font = "Default" , thousands = true, shorts = true })
                 :align(display.LEFT_CENTER, x, y)
                 :addTo(self.node)
             y = y - 30
