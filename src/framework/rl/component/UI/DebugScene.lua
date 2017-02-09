@@ -202,7 +202,7 @@ return function(object, args)
 
     local function createShowNode()
         local node = display.newTTFLabel({ text = "SHOW", size = 32, font = "Courier", color = cc.c3b(255,0,0), textAlign = cc.TEXT_ALIGNMENT_CENTER })
-        UI:Button(node)
+        UI:Button(node, { mode = "fast" })
 
         node:setOnTap(function()
             status = status + 1
