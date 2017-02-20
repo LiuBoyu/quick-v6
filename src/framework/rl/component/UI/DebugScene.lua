@@ -134,6 +134,48 @@ return function(object, args)
             :addTo(debug)
     end
 
+    function object:BUTTON(name, opts)
+        local sandbox = self["~sandbox~"]
+
+        local col = sandbox["~col~"] or 1
+        local row = sandbox["~row~"] or 0
+
+        local opts = opts or {}
+
+        if opts.col then
+            if col ~= opts.col then
+                col = opts.col
+                row = 0
+            end
+        end
+
+        if opts.row then
+            row = opts.row
+        else
+            row = row + 1
+        end
+
+        sandbox["~col~"] = col
+        sandbox["~row~"] = row
+
+        local node = display.newTTFLabel({ text = name, size = 64, font = "Courier", color = cc.c3b(0,255,255), textAlign = cc.TEXT_ALIGNMENT_CENTER })
+            :align(display.CENTER, display.right - 80 - 180 * (col - 1), display.top - 40 - 36 - 36 * (row - 1))
+            :addTo(sandbox)
+
+        UI:Button(node, { mode = "fast" })
+
+        node:setScale(node:getScale() / 2)
+
+        node:setOnRelease(function()
+            node:setScale(node:getScale() / 1.5)
+        end)
+        node:setOnPress(function()
+            node:setScale(node:getScale() * 1.5)
+        end)
+
+        return node
+    end
+
 ----------------------------------------
 -- 对象方法·CONSOLE
 ----------------------------------------
