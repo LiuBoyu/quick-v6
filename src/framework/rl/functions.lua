@@ -281,6 +281,29 @@ end
 function string.formatnumbershorts(v)
     local a, b
 
+    if     v >= 1000000000 then
+        v = v / 1000000000
+        a, b = modf(v)
+
+        return a .. "." .. b .. "B"
+    elseif v >= 1000000 then
+        v = v / 1000000
+        a, b = modf(v)
+
+        return a .. "." .. b .. "M"
+    elseif v >= 1000 then
+        v = v / 1000
+        a, b = modf(v)
+
+        return a .. "." .. b .. "K"
+    else
+        return v
+    end
+end
+
+function string.formatnumbershortsByIN(v)
+    local a, b
+
     if     v >= 100000000 then
         v = v / 10000000
         a, b = modf(v)
