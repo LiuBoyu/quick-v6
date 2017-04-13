@@ -77,6 +77,42 @@ function M:ctor()
         end)
     end)
 
+    ----------------
+    -- Chartboost
+    ----------------
+
+    self:MENU("Chartboost", { newline = false })
+
+    self:TEST("playAd", function()
+        G.App:playAdByChartboostSDK(function(ret)
+            print("playAd:", tostring(ret))
+        end)
+    end)
+
+    self:TEST("isAdPlayable", function()
+        print("isAdPlayable: ", G.App:isAdPlayableByChartboostSDK())
+    end)
+
+    self:TEST("onAdPlayableChanged", function()
+        G.App:setOnAdPlayableChangedByChartboostSDK(function(isOK)
+            print("onAdPlayableChanged:", isOK)
+        end)
+    end)
+
+    self:TEST("playIt", function()
+        G.App:playItByChartboostSDK()
+    end)
+
+    self:TEST("isItPlayable", function()
+        print("isItPlayable: ", G.App:isItPlayableByChartboostSDK())
+    end)
+
+    self:TEST("onItPlayableChanged", function()
+        G.App:setOnItPlayableChangedByChartboostSDK(function(isOK)
+            print("onItPlayableChanged:", isOK)
+        end)
+    end)
+
 end
 
 return M

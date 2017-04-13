@@ -137,13 +137,14 @@ if PLATFORM_IOS     then
     rl.component.SDK.SFClient    = require("framework.rl.component.SDK.SFClient_IOS")
     rl.component.SDK.IAP         = require("framework.rl.component.SDK.IAP_IOS")
     rl.component.SDK.Facebook    = require("framework.rl.component.SDK.Facebook_IOS")
-    rl.component.SDK.Share       = require("framework.rl.component.SDK.Share_IOS")
+    rl.component.SDK.Chartboost  = require("framework.rl.component.SDK.Chartboost_IOS")
     rl.component.SDK.Vungle      = require("framework.rl.component.SDK.Vungle_IOS")
-    rl.component.SDK.Testin      = require("framework.rl.component.SDK.Testin_IOS")
-    rl.component.SDK.Dataeye     = require("framework.rl.component.SDK.Dataeye_IOS")
     rl.component.SDK.Umeng       = require("framework.rl.component.SDK.Umeng_IOS")
-    rl.component.SDK.TalkingData = require("framework.rl.component.SDK.TalkingData_IOS")
-    rl.component.SDK.Adjust      = require("framework.rl.component.SDK.Adjust_IOS")
+    -- rl.component.SDK.TalkingData = require("framework.rl.component.SDK.TalkingData_IOS")
+    -- rl.component.SDK.Dataeye     = require("framework.rl.component.SDK.Dataeye_IOS")
+    -- rl.component.SDK.Adjust      = require("framework.rl.component.SDK.Adjust_IOS")
+    -- rl.component.SDK.Share       = require("framework.rl.component.SDK.Share_IOS")
+    -- rl.component.SDK.Testin      = require("framework.rl.component.SDK.Testin_IOS")
 end
 
 if PLATFORM_ANDROID then
@@ -151,13 +152,14 @@ if PLATFORM_ANDROID then
     rl.component.SDK.SFClient    = require("framework.rl.component.SDK.SFClient_Android")
     rl.component.SDK.IAP         = require("framework.rl.component.SDK.IAP_Android")
     rl.component.SDK.Facebook    = require("framework.rl.component.SDK.Facebook_Android")
-    rl.component.SDK.Share       = require("framework.rl.component.SDK.Share_Android")
+    rl.component.SDK.Chartboost  = require("framework.rl.component.SDK.Chartboost_Android")
     rl.component.SDK.Vungle      = require("framework.rl.component.SDK.Vungle_Android")
-    rl.component.SDK.Testin      = require("framework.rl.component.SDK.Testin_Android")
-    rl.component.SDK.Dataeye     = require("framework.rl.component.SDK.Dataeye_Android")
     rl.component.SDK.Umeng       = require("framework.rl.component.SDK.Umeng_Android")
-    rl.component.SDK.TalkingData = require("framework.rl.component.SDK.TalkingData_Android")
-    rl.component.SDK.Adjust      = require("framework.rl.component.SDK.Adjust_Android")
+    -- rl.component.SDK.TalkingData = require("framework.rl.component.SDK.TalkingData_Android")
+    -- rl.component.SDK.Dataeye     = require("framework.rl.component.SDK.Dataeye_Android")
+    -- rl.component.SDK.Adjust      = require("framework.rl.component.SDK.Adjust_Android")
+    -- rl.component.SDK.Share       = require("framework.rl.component.SDK.Share_Android")
+    -- rl.component.SDK.Testin      = require("framework.rl.component.SDK.Testin_Android")
 end
 
 if PLATFORM_UNKNOWN then
@@ -165,13 +167,14 @@ if PLATFORM_UNKNOWN then
     rl.component.SDK.SFClient    = require("framework.rl.component.SDK.SFClient_IOS") -- Mac
     rl.component.SDK.IAP         = require("framework.rl.component.SDK.IAP_Unknown")
     rl.component.SDK.Facebook    = require("framework.rl.component.SDK.Facebook_Unknown")
-    rl.component.SDK.Share       = require("framework.rl.component.SDK.Share_Unknown")
+    rl.component.SDK.Chartboost  = require("framework.rl.component.SDK.Chartboost_Unknown")
     rl.component.SDK.Vungle      = require("framework.rl.component.SDK.Vungle_Unknown")
-    rl.component.SDK.Testin      = require("framework.rl.component.SDK.Testin_Unknown")
-    rl.component.SDK.Dataeye     = require("framework.rl.component.SDK.Dataeye_Unknown")
     rl.component.SDK.Umeng       = require("framework.rl.component.SDK.Umeng_Unknown")
-    rl.component.SDK.TalkingData = require("framework.rl.component.SDK.TalkingData_Unknown")
-    rl.component.SDK.Adjust      = require("framework.rl.component.SDK.Adjust_Unknown")
+    -- rl.component.SDK.TalkingData = require("framework.rl.component.SDK.TalkingData_Unknown")
+    -- rl.component.SDK.Dataeye     = require("framework.rl.component.SDK.Dataeye_Unknown")
+    -- rl.component.SDK.Adjust      = require("framework.rl.component.SDK.Adjust_Unknown")
+    -- rl.component.SDK.Share       = require("framework.rl.component.SDK.Share_Unknown")
+    -- rl.component.SDK.Testin      = require("framework.rl.component.SDK.Testin_Unknown")
 end
 
 -- components
@@ -222,13 +225,14 @@ rl.COMPONENT( "SDK.SFClient",    rl.component.SDK.SFClient )       -- SDK.SFClie
 rl.COMPONENT( "SDK.IAP",         rl.component.SDK.IAP )            -- SDK.IAP
 
 rl.COMPONENT( "SDK.Facebook",    rl.component.SDK.Facebook )       -- SDK.Facebook
-rl.COMPONENT( "SDK.Share",       rl.component.SDK.Share )          -- SDK.Share
+rl.COMPONENT( "SDK.Chartboost",  rl.component.SDK.Chartboost )     -- SDK.Chartboost
 rl.COMPONENT( "SDK.Vungle",      rl.component.SDK.Vungle )         -- SDK.Vungle
-rl.COMPONENT( "SDK.Testin",      rl.component.SDK.Testin )         -- SDK.Testin
-rl.COMPONENT( "SDK.Dataeye",     rl.component.SDK.Dataeye )        -- SDK.Dataeye
 rl.COMPONENT( "SDK.Umeng",       rl.component.SDK.Umeng )          -- SDK.Umeng
-rl.COMPONENT( "SDK.TalkingData", rl.component.SDK.TalkingData )    -- SDK.TalkingData
-rl.COMPONENT( "SDK.Adjust",      rl.component.SDK.Adjust )         -- SDK.Adjust
+-- rl.COMPONENT( "SDK.TalkingData", rl.component.SDK.TalkingData )    -- SDK.TalkingData
+-- rl.COMPONENT( "SDK.Dataeye",     rl.component.SDK.Dataeye )        -- SDK.Dataeye
+-- rl.COMPONENT( "SDK.Adjust",      rl.component.SDK.Adjust )         -- SDK.Adjust
+-- rl.COMPONENT( "SDK.Share",       rl.component.SDK.Share )          -- SDK.Share
+-- rl.COMPONENT( "SDK.Testin",      rl.component.SDK.Testin )         -- SDK.Testin
 
 rl.COMPONENT( "App.Init",        rl.component.App.Init )           -- App.Init
 rl.COMPONENT( "App.Ads",         rl.component.App.Ads )            -- App.Ads

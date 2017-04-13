@@ -13,8 +13,12 @@ return function(object, args)
 
     local args = args or {}
 
-    if args.vungle then
-        if not object:isComponent("SDK.Vungle") then object:addComponent("SDK.Vungle") end
+    if args.vungle     then
+        if not object:isComponent("SDK.Vungle")     then object:addComponent("SDK.Vungle")     end
+    end
+
+    if args.chartboost then
+        if not object:isComponent("SDK.Chartboost") then object:addComponent("SDK.Chartboost") end
     end
 
 ----------------------------------------
