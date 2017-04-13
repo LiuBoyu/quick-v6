@@ -556,6 +556,20 @@ function M:ctor()
         end)
     end)
 
+    self:TEST("GAUSSIAN_VBLUR", function(sandbox)
+        local a = display.newFilteredSprite(Img.Card, "GAUSSIAN_VBLUR")
+            :align(display.CENTER, display.cx, display.cy)
+            :addTo(sandbox)
+
+        UI:Button(a)
+        a:setOnTap(function()
+
+            a:getFilter():setParameter(31)
+            a:setFilter(a:getFilter())
+
+        end)
+    end)
+
 end
 
 return M
