@@ -9,8 +9,8 @@ function M:ctor()
     self:MENU("Facebook")
 
     self:TEST("logIn", function()
-        G.App:logInByFacebookSDK(function()
-            print("logIn")
+        G.App:logInByFacebookSDK(function(ret)
+            print("logIn", ret)
         end)
     end)
 

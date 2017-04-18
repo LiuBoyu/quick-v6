@@ -8,7 +8,7 @@
 // objc interface - 应用回调
 //
 
-+ (void) applicationDidFinishLaunching
++ (void) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 }
 
@@ -36,7 +36,12 @@
 {
 }
 
-+ (BOOL) handleOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
++ (BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return YES;
+}
+
++ (BOOL) application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
     return YES;
 }

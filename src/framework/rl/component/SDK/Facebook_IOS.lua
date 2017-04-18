@@ -22,12 +22,6 @@ return function(object, args)
     function object:logInByFacebookSDK(callback)
         log.debug("logIn")
 
-        local callback = function(e, res) if e then end
-            if callback then
-                callback(res)
-            end
-        end
-
         local ok, ret = luaoc.callStaticMethod("SDKApp", "logInByFacebookSDK", {
                             callback = callback
                         })
@@ -102,8 +96,8 @@ return function(object, args)
     function object:GETbyFacebookSDK(args)
         log.debug("GET: %s", args)
 
-        local graphPath  = args.graphPath
-        local parameters = args.parameters
+        local graphPath  = string.sub(args.graphPath,2)
+        local parameters = json.encode(args.parameters)
 
         local callback   = function(e, res) if e then end
             if args.callback then
@@ -111,18 +105,9 @@ return function(object, args)
             end
         end
 
-        local tbl = {}
-
-        for k, v in pairs(parameters or {}) do
-            tbl[#tbl+1] = k .. "=" .. v
-        end
-
-        if #tbl > 0 then
-            graphPath = graphPath .. "?" .. table.concat(tbl, "&")
-        end
-
         local ok, ret = luaoc.callStaticMethod("SDKApp", "GETByFacebookSDK", {
                             graphPath = graphPath,
+                           parameters = parameters,
                              callback = callback,
                         })
         return ret
