@@ -19,16 +19,20 @@ return function(object, args)
 -- 对象方法
 ----------------------------------------
 
-    function object:onProfileSignInByUmengSDK(accountId)
-        log.debug("onProfileSignIn: %s", accountId)
-    end
-
-    function object:onProfileSignOffByUmengSDK()
-        log.debug("onProfileSignOff")
-    end
-
     function object:onEventByUmengSDK(e)
         log.debug("onEvent: %s", e)
+    end
+
+    function object:onLevelByUmengSDK(e)
+        log.debug("onLevel: %s", e)
+    end
+
+    function object:onUserByUmengSDK(e)
+        log.debug("onUser: %s", e)
+    end
+
+    function object:onPayByUmengSDK(e)
+        log.debug("onPay: %s", e)
     end
 
     return component

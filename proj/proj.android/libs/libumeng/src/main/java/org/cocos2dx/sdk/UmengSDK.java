@@ -38,14 +38,6 @@ public class UmengSDK {
     //
     // 统计
     //
-    public static void onProfileSignIn(String accountId) {
-        UMGameAgent.onProfileSignIn(accountId);
-    }
-
-    public static void onProfileSignOff() {
-        UMGameAgent.onProfileSignOff();
-    }
-
     public static void onEvent(String json) {
         JSONObject args = JSON.parseObject(json);
 
@@ -70,6 +62,83 @@ public class UmengSDK {
                 UMGameAgent.onEvent(SDKUtils.getContext(), id);
             }
         }
+    }
+
+    public static void onLevel(String json) {
+        JSONObject args = JSON.parseObject(json);
+
+        String cmd = args.getString("cmd");
+        String level = args.getString("level");
+
+        if (cmd.equals("start")) {
+            UMGameAgent.startLevel(level);
+        }
+        if (cmd.equals("finish")) {
+            UMGameAgent.finishLevel(level);
+        }
+        if (cmd.equals("fail")) {
+            UMGameAgent.failLevel(level);
+        }
+    }
+
+    public static void onUser(String json) {
+        JSONObject args = JSON.parseObject(json);
+
+        String cmd = args.getString("cmd");
+
+        if (cmd.equals("login")) {
+            String playerID = args.getString("playerID");
+            String provider = args.getString("provider");
+
+            if (provider != null) {
+                UMGameAgent.onProfileSignIn(playerID);
+            } else {
+                UMGameAgent.onProfileSignIn(playerID, provider);
+            }
+        }
+        if (cmd.equals("logout")) {
+            UMGameAgent.onProfileSignOff();
+        }
+        if (cmd.equals("level")) {
+            int level = args.getIntValue("level");
+
+            UMGameAgent.setPlayerLevel(level);
+        }
+    }
+
+    public static void onPay(String json) {
+        JSONObject args = JSON.parseObject(json);
+
+        String cmd = args.getString("cmd");
+
+        if (cmd.equals("coin")) {
+            double cash = args.getDoubleValue("cash");
+            double coin = args.getDoubleValue("coin");
+            int source = args.getIntValue("source");
+
+            UMGameAgent.pay(cash, coin, source);
+        }
+        if (cmd.equals("item")) {
+            double cash = args.getDoubleValue("cash");
+            String item = args.getString("item");
+            int amount = args.getIntValue("amount");
+            double price = args.getDoubleValue("price");
+            int source = args.getIntValue("source");
+
+            UMGameAgent.pay(cash, item, amount, price, source);
+        }
+    }
+
+    public static void onBuy(String json) {
+        // todo
+    }
+
+    public static void onUse(String json) {
+        // todo
+    }
+
+    public static void onBonus(String json) {
+        // todo
     }
 
 }

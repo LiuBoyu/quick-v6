@@ -38,7 +38,7 @@ public class FacebookSDK {
     // 初始化
     //
     public static void start() {
-        FacebookSdk.sdkInitialize(SDKUtils.getApplicationContext());
+        // FacebookSdk.sdkInitialize(SDKUtils.getApplicationContext());
         AppEventsLogger.activateApp(SDKUtils.getApplication());
 
         callbackManager = CallbackManager.Factory.create();
@@ -136,7 +136,7 @@ public class FacebookSDK {
         onLoginCallback = callback;
 
         LoginManager.getInstance().logInWithReadPermissions(SDKUtils.getMainActivity(), Arrays.asList("public_profile", "user_friends"));
-//        Arrays.asList("public_profile", "user_friends")"publish_actions"
+        // Arrays.asList("public_profile", "user_friends") "publish_actions"
     }
 
     public static void logOut() {
