@@ -43,20 +43,31 @@ function M:ctor()
         })
     end)
 
-    self:TEST("Me", function()
+    self:TEST("Me", function(sb)
+        local a = display.newSprite()
+            :align(display.CENTER, display.cx, display.cy)
+            :addTo(sb)
+
+        Component(a)
+            :addComponent("EventProxy")
+            :addComponent("UI.UrlPic")
+
+        a:listenModelByInit(G.Me, "fb_picture_url", function(e)
+            a:setUrl(e.v)
+        end)
+
         G.App:GETbyFacebookSDK({
             graphPath  = "/me",
             parameters = {
                 fields = "id,name,first_name,last_name,email,picture.height(160).width(160)",
             },
             callback   = function(res)
-                print(tostring(res))
-                 G.Me:set("fb_name",res.name)
-                            G.Me:set("fb_id",res.id)
-                            G.Me:set("fb_picture_heigh",res.picture.data.height)
-                            G.Me:set("fb_picture_weight",res.picture.data.weight)
-                            G.Me:set("fb_is_silhouette",res.picture.data.is_silhouette)
-                            G.Me:set("fb_picture_weight",res.picture.data.url)
+                G.Me:set("fb_name",res.name)
+                G.Me:set("fb_id",res.id)
+                G.Me:set("fb_picture_height",res.picture.data.height)
+                G.Me:set("fb_picture_width",res.picture.data.width)
+                G.Me:set("fb_is_silhouette",res.picture.data.is_silhouette)
+                G.Me:set("fb_picture_url",res.picture.data.url)
             end,
         })
     end)
