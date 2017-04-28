@@ -125,7 +125,9 @@ return function(object, args)
                 local ret = object:getProductByIAP(v.id)
 
                 if ret then
-                    ret.price = v.price
+                    if not ret.price then
+                           ret.price = v.price
+                    end
                     ret.isOK  = true
                 end
 
