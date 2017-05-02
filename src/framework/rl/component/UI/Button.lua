@@ -57,6 +57,8 @@ return function(object, args)
 
     end
 
+    local sfx = args.sfx
+
 ----------------------------------------
 -- 对象方法·按钮
 ----------------------------------------
@@ -118,6 +120,12 @@ return function(object, args)
 
                 if DEBUG_LOG_UIBUTTON then
                     object:logDEBUG("点击")
+                end
+
+                if not sfx then
+                    if rl.G.UIButtonOnTapSFX then
+                        audio.playSound(rl.G.UIButtonOnTapSFX)
+                    end
                 end
 
                 tap.ts = gettime()
