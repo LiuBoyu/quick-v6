@@ -99,6 +99,10 @@
         [dict setObject:permissions         forKey:@"permissions"];
         [dict setObject:declinedPermissions forKey:@"declinedPermissions"];
         
+        BOOL isExpired = [token.expirationDate timeIntervalSinceNow] < 0;
+        
+        [dict setObject:[NSNumber numberWithBool:isExpired] forKey:@"isExpired"];
+        
         NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
         NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         

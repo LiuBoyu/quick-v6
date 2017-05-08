@@ -101,8 +101,8 @@ return function(object, args)
     end
 
     function object:isItPlayable()
-        if self:isItPlayableByChartboostSDK() then return true end
-        if self:isAdPlayableByVungleSDK()     then return true end
+        if args.chartboost and self:isItPlayableByChartboostSDK() then return true end
+        if args.vungle     and self:isAdPlayableByVungleSDK()     then return true end
     end
 
     return component
