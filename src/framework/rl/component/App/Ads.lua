@@ -47,6 +47,15 @@ return function(object, args)
 
         self:dispatchEvent("ADS_TRY_TO_PLAY")
 
+        if not isOK and args.chartboost then
+            if self:isAdPlayableByChartboostSDK() then
+                self:playAdByChartboostSDK(function(ret)
+                    return callback({ isCompleted = ret.wasSuccessfulView, error = ret.reason })
+                end)
+                isOK = true
+            end
+        end
+
         if not isOK and args.vungle then
             if self:isAdPlayableByVungleSDK() then
                 self:playAdByVungleSDK(function(ret)
@@ -63,6 +72,37 @@ return function(object, args)
 
     function object:isAdPlayable()
         if self:isAdPlayableByVungleSDK() then return true end
+    end
+
+    function object:playIt()
+        local isOK
+
+        if not isOK and args.chartboost then
+            if self:isItPlayableByChartboostSDK() then
+                self:playItByChartboostSDK()
+                isOK = true
+            end
+        end
+
+        if not isOK and args.vungle then
+            if self:isAdPlayableByVungleSDK() then
+                self:playAdByVungleSDK(function(ret)
+                    -- nothing
+                end)
+                isOK = true
+            end
+        end
+
+        if isOK then
+            self:dispatchEvent("ADS_PLAY_IT")
+        end
+
+        return isOK
+    end
+
+    function object:isItPlayable()
+        if self:isItPlayableByChartboostSDK() then return true end
+        if self:isAdPlayableByVungleSDK()     then return true end
     end
 
     return component
