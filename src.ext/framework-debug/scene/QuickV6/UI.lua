@@ -570,6 +570,30 @@ function M:ctor()
         end)
     end)
 
+    self:TEST("ParticleSystem", function(sandbox)
+
+        -- local a = cc.ParticleSystemQuad:create(res .. "SmallSun.plist")
+        -- local a = cc.ParticleExplosion:create()
+        -- local a = cc.ParticleFire:create()
+        -- local a = cc.ParticleFireworks:create()
+        -- local a = cc.ParticleFlower:create()
+        -- local a = cc.ParticleGalaxy:create()
+        -- local a = cc.ParticleMeteor:create()
+        -- local a = cc.ParticleRain:create()
+        -- local a = cc.ParticleSmoke:create()
+        -- local a = cc.ParticleSnow:create()
+        -- local a = cc.ParticleSpiral:create()
+        -- local a = cc.ParticleSun:create()
+
+        local a = cc.ParticleSystemQuad:create(res .. "particle_texture.plist")
+            :align(display.CENTER, display.cx, display.cy)
+            :addTo(sandbox)
+        local a = display.newSprite(Img.Card)
+            :align(display.CENTER, display.cx, display.cy)
+            :addTo(sandbox)
+
+    end)
+
 end
 
 return M
