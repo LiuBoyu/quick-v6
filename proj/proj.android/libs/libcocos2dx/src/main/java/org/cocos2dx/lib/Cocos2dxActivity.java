@@ -153,6 +153,13 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
     // ===========================================================
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        invokeAllSDK("onStart", null, null);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -170,6 +177,13 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
         this.mGLSurfaceView.onPause();
 
         invokeAllSDK("onPause", null, null);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        invokeAllSDK("onStop", null, null);
     }
 
     @Override
