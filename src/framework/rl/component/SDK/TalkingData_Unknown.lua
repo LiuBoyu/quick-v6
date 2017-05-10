@@ -19,16 +19,20 @@ return function(object, args)
 -- 对象方法
 ----------------------------------------
 
-    function object:onProfileSignInByTalkingDataSDK(accountId)
-        log.debug("onProfileSignIn: %s", accountId)
-    end
-
-    function object:onProfileSignOffByTalkingDataSDK()
-        log.debug("onProfileSignOff")
-    end
-
     function object:onEventByTalkingDataSDK(e)
         log.debug("onEvent: %s", e)
+    end
+
+    function object:onLevelByTalkingDataSDK(e)
+        log.debug("onLevel: %s", e)
+    end
+
+    function object:onUserByTalkingDataSDK(e)
+        log.debug("onUser: %s", e)
+    end
+
+    function object:onPayByTalkingDataSDK(e)
+        log.debug("onPay: %s", e)
     end
 
     return component
