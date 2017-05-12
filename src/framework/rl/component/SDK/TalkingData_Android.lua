@@ -48,6 +48,18 @@ return function(object, args)
         return ret
     end
 
+    function object:onBuyByTalkingDataSDK(e)
+        log.debug("onBuy: %s", e)
+    end
+
+    function object:onUseByTalkingDataSDK(e)
+        log.debug("onUse: %s", e)
+    end
+
+    function object:onBonusByTalkingDataSDK(e)
+        log.debug("onBonus: %s", e)
+    end
+
     return component
 end
 

@@ -110,12 +110,64 @@ return function(object, args)
         end)
     end
 
-    function object:trackBuy()
+    function object:trackItem(name, callback)
+        self:listenEvent(self, name, function(e)
+            local k, v = callback(e)
+
+            if v then
+
+                if k == "buy"  then
+                    if args.umeng       then
+                        object:onBuyByUmengSDK      ({ item = v.item, amount = v.amount, price = v.price })
+                    end
+                    if args.talkingdata then
+                        object:onBuyByTalkingDataSDK({ item = v.item, amount = v.amount, price = v.price })
+                    end
+                end
+
+                if k == "use" then
+                    if args.umeng       then
+                        object:onUseByUmengSDK      ({ item = v.item, amount = v.amount, price = v.price })
+                    end
+                    if args.talkingdata then
+                        object:onUseByTalkingDataSDK({ item = v.item, amount = v.amount, price = v.price })
+                    end
+                end
+
+                if k == "buy&use" then
+                    if args.umeng       then
+                        object:onBuyByUmengSDK      ({ item = v.item, amount = v.amount, price = v.price })
+                        object:onUseByUmengSDK      ({ item = v.item, amount = v.amount, price = v.price })
+                    end
+                    if args.talkingdata then
+                        object:onBuyByTalkingDataSDK({ item = v.item, amount = v.amount, price = v.price })
+                        object:onUseByTalkingDataSDK({ item = v.item, amount = v.amount, price = v.price })
+                    end
+                end
+
+            end
+        end)
     end
-    function object:trackUse()
+
+    function object:trackBonus(name, callback)
+        self:listenEvent(self, name, function(e)
+            local k, v = callback(e)
+
+            if v then
+
+                if k == "coin" then
+                    if args.umeng       then
+                        object:onBonusByUmengSDK      ({ cmd = "coin", coin = v.coin, reason = v.reason })
+                    end
+                    if args.talkingdata then
+                        object:onBonusByTalkingDataSDK({ cmd = "coin", coin = v.coin, reason = v.reason })
+                    end
+                end
+
+            end
+        end)
     end
-    function object:trackBonus()
-    end
+
     function object:trackLevel(name, callback)
         self:listenEvent(self, name, function(e)
             local k, v = callback(e)

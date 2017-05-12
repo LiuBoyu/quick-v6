@@ -8,6 +8,8 @@
 
 @implementation SDKApp (TalkingData)
 
+static TDGAAccount *player = NULL;
+
 + (void) startTalkingDataSDK
 {
     [TalkingDataGA onStart:SDKTalkingDataAppId withChannelId:SDKTalkingDataChannelId];
@@ -21,7 +23,7 @@
         NSString *playerID = [dict objectForKey:@"playerID"];
         NSString *provider = [dict objectForKey:@"provider"];
         
-        TDGAAccount *player = [TDGAAccount setAccount:playerID];
+        player = [TDGAAccount setAccount:playerID];
         
         if        ([provider isEqualToString:@"registered"]) {
             [player setAccountType:kAccountRegistered];
@@ -36,12 +38,11 @@
     }
     
     if ([cmd isEqualToString:@"level"]) {
-        NSString *playerID =  [dict objectForKey:@"playerID"];
-        int          level = [[dict objectForKey:@"level"] intValue];
+        int level = [[dict objectForKey:@"level"] intValue];
         
-        TDGAAccount *player = [TDGAAccount setAccount:playerID];
-        
-        [player setLevel:level];
+        if (player) {
+            [player setLevel:level];
+        }
     }
 }
 
@@ -63,33 +64,31 @@
 
 + (void) onBuyByTalkingDataSDK:(NSDictionary *)dict
 {
-    //    NSString *item =  [dict objectForKey:@"item"  ];
-    //    int     amount = [[dict objectForKey:@"amount"] intValue];
-    //    double   price = [[dict objectForKey:@"price" ] doubleValue];
+    NSString *item =  [dict objectForKey:@"item"  ];
+    int     amount = [[dict objectForKey:@"amount"] intValue];
+    double   price = [[dict objectForKey:@"price" ] doubleValue];
+    
+    [TDGAItem onPurchase:item itemNumber:amount priceInVirtualCurrency:price];
 }
 
 + (void) onUseByTalkingDataSDK:(NSDictionary *)dict
 {
-    //    NSString *item =  [dict objectForKey:@"item"  ];
-    //    int     amount = [[dict objectForKey:@"amount"] intValue];
-    //    double   price = [[dict objectForKey:@"price" ] doubleValue];
+    NSString *item =  [dict objectForKey:@"item"  ];
+    int     amount = [[dict objectForKey:@"amount"] intValue];
+    
+    [TDGAItem onUse:item itemNumber:amount];
 }
 
 + (void) onBonusByTalkingDataSDK:(NSDictionary *)dict
 {
-    //    NSString *cmd = [dict objectForKey:@"cmd"];
-    //
-    //    if ([cmd isEqualToString:@"coin"]) {
-    //        double coin = [[dict objectForKey:@"coin"  ] doubleValue];
-    //        int  source = [[dict objectForKey:@"source"] intValue];
-    //    }
-    //
-    //    if ([cmd isEqualToString:@"item"]) {
-    //        NSString *item =  [dict objectForKey:@"item"  ];
-    //        int     amount = [[dict objectForKey:@"amount"] intValue];
-    //        double   price = [[dict objectForKey:@"price" ] doubleValue];
-    //        int     source = [[dict objectForKey:@"source"] intValue];
-    //    }
+    NSString *cmd = [dict objectForKey:@"cmd"];
+    
+    if ([cmd isEqualToString:@"coin"]) {
+        double      coin = [[dict objectForKey:@"coin"  ] doubleValue];
+        NSString *reason =  [dict objectForKey:@"reason"];
+        
+        [TDGAVirtualCurrency onReward:coin reason:reason];
+    }
 }
 
 + (void) onEventByTalkingDataSDK:(NSDictionary *)dict

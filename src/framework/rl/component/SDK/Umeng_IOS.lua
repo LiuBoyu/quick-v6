@@ -43,6 +43,18 @@ return function(object, args)
         log.debug("onPay: %s", e)
     end
 
+    function object:onBuyByUmengSDK(e)
+        log.debug("onBuy: %s", e)
+    end
+
+    function object:onUseByUmengSDK(e)
+        log.debug("onUse: %s", e)
+    end
+
+    function object:onBonusByUmengSDK(e)
+        log.debug("onBonus: %s", e)
+    end
+
     return component
 end
 

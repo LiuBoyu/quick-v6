@@ -63,6 +63,38 @@ return function(object, args)
         return ret
     end
 
+    function object:onBuyByTalkingDataSDK(e)
+        log.debug("onBuy: %s", e)
+
+        local ok, ret = luaoc.callStaticMethod("SDKApp", "onBuyByTalkingDataSDK", {
+                                    item = e.item,
+                                  amount = e.amount,
+                                   price = e.price,
+                        })
+        return ret
+    end
+
+    function object:onUseByTalkingDataSDK(e)
+        log.debug("onUse: %s", e)
+
+        local ok, ret = luaoc.callStaticMethod("SDKApp", "onUseByTalkingDataSDK", {
+                                    item = e.item,
+                                  amount = e.amount,
+                        })
+        return ret
+    end
+
+    function object:onBonusByTalkingDataSDK(e)
+        log.debug("onBonus: %s", e)
+
+        local ok, ret = luaoc.callStaticMethod("SDKApp", "onBonusByTalkingDataSDK", {
+                                     cmd = e.cmd,
+                                    coin = e.coin,
+                                  reason = e.reason,
+                        })
+        return ret
+    end
+
     return component
 end
 

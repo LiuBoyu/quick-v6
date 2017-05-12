@@ -278,24 +278,36 @@ local function modf(v)
     return a, b
 end
 
-function string.formatnumbershorts(v)
+function string.formatnumbershorts(v, forced)
     local a, b
 
     if     v >= 1000000000 then
         v = v / 1000000000
         a, b = modf(v)
 
-        return a .. "." .. b .. "B"
+        if forced then
+            return a .. "B"
+        else
+            return a .. "." .. b .. "B"
+        end
     elseif v >= 1000000 then
         v = v / 1000000
         a, b = modf(v)
 
-        return a .. "." .. b .. "M"
+        if forced then
+            return a .. "M"
+        else
+            return a .. "." .. b .. "M"
+        end
     elseif v >= 1000 then
         v = v / 1000
         a, b = modf(v)
 
-        return a .. "." .. b .. "K"
+        if forced then
+            return a .. "K"
+        else
+            return a .. "." .. b .. "K"
+        end
     else
         return v
     end
