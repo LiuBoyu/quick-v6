@@ -147,6 +147,8 @@ return function(object, args)
         if     e.name == "began" then
 
             taphold.status = "ready"
+            taphold.x      = e.x
+            taphold.y      = e.y
             taphold.handle = object:performWithDelay(function()
 
                 taphold.status = "done"
@@ -171,6 +173,11 @@ return function(object, args)
             end, 1.0)
 
         else
+
+            if e.name == "moved" and math.abs(taphold.x - e.x) < 1
+                                 and math.abs(taphold.y - e.y) < 1 then
+                    return
+            end
 
             taphold.status = "ignored"
 
