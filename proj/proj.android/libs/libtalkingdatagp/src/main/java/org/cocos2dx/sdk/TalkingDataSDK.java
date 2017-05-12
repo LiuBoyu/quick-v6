@@ -84,10 +84,12 @@ public class TalkingDataSDK {
 
             player = TDGAAccount.setAccount(playerID);
 
-            if (provider.equals("registered")) {
-                player.setAccountType(TDGAAccount.AccountType.REGISTERED);
-            } else if (provider.equals("facebook")) {
-                player.setAccountType(TDGAAccount.AccountType.TYPE1);
+            if (provider != null) {
+                if (provider.equals("registered")) {
+                    player.setAccountType(TDGAAccount.AccountType.REGISTERED);
+                } else if (provider.equals("facebook")) {
+                    player.setAccountType(TDGAAccount.AccountType.TYPE1);
+                }
             } else {
                 player.setAccountType(TDGAAccount.AccountType.ANONYMOUS);
             }
