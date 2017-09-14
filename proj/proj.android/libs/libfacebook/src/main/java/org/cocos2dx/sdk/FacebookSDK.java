@@ -19,8 +19,10 @@ import com.facebook.login.LoginResult;
 import com.facebook.share.model.GameRequestContent;
 import com.facebook.share.widget.GameRequestDialog;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.HashMap;
 
 public class FacebookSDK {
@@ -29,6 +31,8 @@ public class FacebookSDK {
 
     private static AccessTokenTracker accessTokenTracker;
     private static GameRequestDialog requestDialog;
+
+    private static AppEventsLogger logger;
 
     private static int onCurrentAccessTokenChangedCallback = 0;
     private static int onRequestCallback = 0;
@@ -40,6 +44,8 @@ public class FacebookSDK {
     public static void start() {
         // FacebookSdk.sdkInitialize(SDKUtils.getApplicationContext());
         AppEventsLogger.activateApp(SDKUtils.getApplication());
+
+        logger = AppEventsLogger.newLogger(SDKUtils.getMainActivity());
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -141,6 +147,10 @@ public class FacebookSDK {
 
     public static void logOut() {
         LoginManager.getInstance().logOut();
+    }
+
+    public static void logPurchase(final double purchaseAmount) {
+        logger.logPurchase(BigDecimal.valueOf(purchaseAmount), Currency.getInstance("USD"));
     }
 
     //
